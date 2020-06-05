@@ -10,9 +10,15 @@ export const useStyles = makeStyles((theme) => ({
   formWrapper: {
     height: "100%",
   },
+  paper: {
+    padding: theme.spacing(6),
+  },
   formInput: {
     flexGrow: 0,
     margin: theme.spacing(1),
+  },
+  textField: {
+    width: "100%",
   },
   formButton: {
     margin: theme.spacing(2),
