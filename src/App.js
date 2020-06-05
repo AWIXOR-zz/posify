@@ -1,12 +1,17 @@
 import React from "react";
-import logo from "./logo.svg";
+import { Route, Switch } from "react-router-dom";
+import SignIn from "./views/SignIn/SignIn";
+import SignUp from "./views/SignUp/SignUp";
+
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <div className="App">
-      <h1>This is the app</h1>
-    </div>
+    <Switch>
+      <Route exact path="/" component={SignIn} />
+      <Route exact path="/register" component={SignUp} />
+    </Switch>
   );
 }
 
