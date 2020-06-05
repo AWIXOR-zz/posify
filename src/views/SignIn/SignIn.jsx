@@ -1,22 +1,8 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { TextField, Grid, Typography } from "@material-ui/core";
+import { TextField, Grid, Button, Typography } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-  form: {
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-  },
-  formWrapper: {
-    height: "100%",
-  },
-  formInput: {
-    flexGrow: 0,
-    margin: theme.spacing(1),
-  },
-}));
+import { useStyles } from "../../components/assits/styles";
+
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,6 +47,22 @@ function SignIn() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+        </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.formButton}
+            endIcon={<i className="material-icons">arrow_forward</i>}
+          >
+            Submit
+          </Button>
+        </Grid>
+        <Grid item>
+          <Typography variant="body2" component="h2" color="textSecondary">
+            Don’t have an account? <a href="/register">Create it here</a>
+          </Typography>
         </Grid>
       </Grid>
     </form>
