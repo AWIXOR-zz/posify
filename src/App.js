@@ -4,7 +4,6 @@ import SignIn from "./views/SignIn/SignIn";
 import SignUp from "./views/SignUp/SignUp";
 
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
