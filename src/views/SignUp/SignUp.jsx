@@ -1,18 +1,21 @@
-import React from "react";
-import { Formik, Field, ErrorMessage } from "formik";
+import React, { useEffect } from "react";
+import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import Message from "../../components/UI/Message/Message";
+import Input from "../../components/UI/Input/Input";
+import * as actions from "../../redux/actions/authActions";
 import {
-  TextField,
   Grid,
   Button,
   Typography,
+  CircularProgress,
   Paper,
   InputAdornment,
   IconButton,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { useSelector, useDispatch } from "react-redux";
 
 import { useStyles } from "../../components/assits/styles";
 
@@ -20,41 +23,56 @@ const MessageWrapper = styled.div`
   position: absolute;
   bottom: 0;
 `;
-const LoginSchema = Yup.object().shape({
+const SignUpSchema = Yup.object().shape({
+  fullName: Yup.string()
+    .required("Your full name is required.")
+    .min(6, "Too short.")
+    .max(25, "Too long."),
+  businessName: Yup.string()
+    .required("Your business name is required.")
+    .min(3, "Too short.")
+    .max(25, "Too long."),
   email: Yup.string()
     .email("Invalid email.")
     .required("The email is required."),
   password: Yup.string()
     .required("The passoword is required.")
-    .min(8, "Too short."),
+    .min(8, "The password is too short."),
 });
 
-const SignUp = ({ login, loading, error, cleanUp }) => {
-  const [values, setValues] = React.useState({
-    email: "",
-    password: "",
-    businessName: "",
+const SignUp = () => {
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.authReducer);
+  console.log(loading);
+
+  const { signUp, clean } = actions;
+  const [password, showPassword] = React.useState({
     showPassword: false,
   });
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(clean);
+  //   };
+  // }, [clean]);
 
   const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+    showPassword({ showPassword: !password.showPassword });
   };
 
   const classes = useStyles();
   return (
     <Formik
       initialValues={{
+        fullName: "",
         email: "",
         password: "",
+        businessName: "",
       }}
-      validationSchema={LoginSchema}
+      validationSchema={SignUpSchema}
       onSubmit={async (values, { setSubmitting }) => {
-        console.log("thjings");
+        await dispatch(signUp(values));
+        setSubmitting(false);
       }}
     >
       {({ isSubmitting, isValid }) => (
@@ -74,31 +92,40 @@ const SignUp = ({ login, loading, error, cleanUp }) => {
               </Grid>
               <Grid item sm className={classes.formInput}>
                 <Field
-                  as={TextField}
+                  component={Input}
                   className={classes.textField}
-                  label="Email"
+                  label="Full name"
                   variant="outlined"
-                  id="email"
-                  name="email"
+                  id="fullName"
+                  name="fullName"
                   type="text"
-                  value={values.email}
-                  placeholder="Email"
-                  onChange={handleChange("email")}
+                  placeholder="fullName"
                   required
                 />
               </Grid>
               <Grid item sm className={classes.formInput}>
                 <Field
-                  as={TextField}
+                  component={Input}
+                  className={classes.textField}
+                  label="Email"
+                  variant="outlined"
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  required
+                />
+              </Grid>
+              <Grid item sm className={classes.formInput}>
+                <Field
+                  component={Input}
                   className={classes.textField}
                   label="Password"
                   variant="outlined"
                   id="password"
                   name="password"
-                  type={values.showPassword ? "text" : "password"}
+                  type={password.showPassword ? "text" : "password"}
                   placeholder="Password"
-                  value={values.password}
-                  onChange={handleChange("password")}
                   required
                   InputProps={{
                     endAdornment: (
@@ -107,7 +134,7 @@ const SignUp = ({ login, loading, error, cleanUp }) => {
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
                         >
-                          {values.showPassword ? (
+                          {password.showPassword ? (
                             <Visibility />
                           ) : (
                             <VisibilityOff />
@@ -120,7 +147,7 @@ const SignUp = ({ login, loading, error, cleanUp }) => {
               </Grid>
               <Grid item sm className={classes.formInput}>
                 <Field
-                  as={TextField}
+                  component={Input}
                   className={classes.textField}
                   label="Business Name"
                   variant="outlined"
@@ -128,24 +155,25 @@ const SignUp = ({ login, loading, error, cleanUp }) => {
                   name="businessName"
                   type="text"
                   placeholder="Business Name"
-                  value={values.businessName}
-                  onChange={handleChange("businessName")}
                   required
                 />
               </Grid>
               <Grid item>
-                <Button
-                  disabled={isValid || isSubmitting}
-                  // loading={loading ? "Logging in..." : null}
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  className={classes.formButton}
-                  endIcon={<i className="material-icons">arrow_forward</i>}
-                >
-                  Sign up
-                </Button>
+                {!loading ? (
+                  <Button
+                    disabled={!isValid || isSubmitting}
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    className={classes.formButton}
+                    endIcon={<i className="material-icons">arrow_forward</i>}
+                  >
+                    Sign up
+                  </Button>
+                ) : (
+                  <CircularProgress />
+                )}
               </Grid>
               <Grid item>
                 <MessageWrapper>

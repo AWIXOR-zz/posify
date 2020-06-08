@@ -9,6 +9,15 @@ export const useStyles = makeStyles((theme) => ({
   },
   formWrapper: {
     height: "100%",
+    width: "100%",
+    maxWidth: "40rem",
+    margin: "0 auto",
+    borderRadius: "0.7rem",
+    padding: "10rem 8rem",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
   paper: {
     padding: theme.spacing(6),

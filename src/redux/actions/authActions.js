@@ -16,8 +16,8 @@ export const signUp = (data) => async (
     console.log(res.user.uid);
 
     await firestore.collection("users").doc(res.user.uid).set({
-      firstName: data.firstName,
-      lastName: data.lastName,
+      fullName: data.fullName,
+      businessName: data.businessName,
     });
     dispatch({ type: actions.AUTH_SUCCESS });
   } catch (err) {

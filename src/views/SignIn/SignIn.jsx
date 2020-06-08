@@ -2,11 +2,12 @@ import React from "react";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
+import Input from "../../components/UI/Input/Input";
 import Message from "../../components/UI/Message/Message";
 import {
-  TextField,
   Grid,
   Button,
+  CircularProgress,
   Typography,
   Paper,
   InputAdornment,
@@ -32,18 +33,12 @@ const LoginSchema = Yup.object().shape({
 
 const SignIn = ({ login, loading, error, cleanUp }) => {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    email: "",
-    password: "",
+  const [password, showPassword] = React.useState({
     showPassword: false,
   });
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
   const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
+    showPassword({ showPassword: !password.showPassword });
   };
   return (
     <Formik
@@ -58,7 +53,6 @@ const SignIn = ({ login, loading, error, cleanUp }) => {
     >
       {({ isSubmitting, isValid }) => (
         <form className={classes.form}>
-          {console.log(isSubmitting, isValid)}
           <Grid
             className={classes.formWrapper}
             container
@@ -74,30 +68,26 @@ const SignIn = ({ login, loading, error, cleanUp }) => {
               </Grid>
               <Grid item sm className={classes.formInput}>
                 <Field
-                  as={TextField}
+                  component={Input}
                   className={classes.textField}
                   label="Email"
                   variant="outlined"
                   id="email"
                   name="email"
                   type="text"
-                  value={values.email}
                   placeholder="Email"
-                  onChange={handleChange("email")}
                   required
                 />
               </Grid>
               <Grid item sm className={classes.formInput}>
                 <Field
-                  as={TextField}
+                  component={Input}
                   label="Password"
                   variant="outlined"
                   id="password"
                   name="password"
-                  type={values.showPassword ? "text" : "password"}
+                  type={password.showPassword ? "text" : "password"}
                   placeholder="Password"
-                  value={values.password}
-                  onChange={handleChange("password")}
                   required
                   InputProps={{
                     endAdornment: (
@@ -106,7 +96,7 @@ const SignIn = ({ login, loading, error, cleanUp }) => {
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
                         >
-                          {values.showPassword ? (
+                          {password.showPassword ? (
                             <Visibility />
                           ) : (
                             <VisibilityOff />
@@ -118,18 +108,21 @@ const SignIn = ({ login, loading, error, cleanUp }) => {
                 />
               </Grid>
               <Grid item>
-                <Button
-                  disabled={!isValid || isSubmitting}
-                  // loading={loading ? "Logging in..." : null}
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  className={classes.formButton}
-                  endIcon={<i className="material-icons">arrow_forward</i>}
-                >
-                  Sign in
-                </Button>
+                {!loading ? (
+                  <Button
+                    disabled={!isValid || isSubmitting}
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    className={classes.formButton}
+                    endIcon={<i className="material-icons">arrow_forward</i>}
+                  >
+                    Sign In
+                  </Button>
+                ) : (
+                  <CircularProgress />
+                )}
               </Grid>
               <Grid item>
                 <MessageWrapper>
