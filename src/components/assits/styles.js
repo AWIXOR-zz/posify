@@ -94,6 +94,9 @@ export const useStyles = makeStyles((theme) => ({
   sidebarFooter: {
     height: "35px",
   },
+  sidebarHeaderP: {
+    margin: "auto",
+  },
   sidebarFooterP: {
     alignItems: "center",
     display: "flex",

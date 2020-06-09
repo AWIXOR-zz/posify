@@ -36,6 +36,14 @@ function Sidebar({ handleDrawerClose, open }) {
       }}
     >
       <div className={classes.toolbar}>
+        <Typography
+          variant="h6"
+          component="h6"
+          color="primary"
+          className={classes.sidebarHeaderP}
+        >
+          Posify
+        </Typography>
         <IconButton onClick={handleDrawerClose}>
           {theme.direction === "rtl" ? (
             <ChevronRightIcon />
