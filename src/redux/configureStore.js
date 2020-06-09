@@ -25,7 +25,7 @@ export default function configureStore(initialState) {
     rootReducer,
     initialState,
     composeEnhancers(
-      // reactReduxFirebase(firebase, rrfConfig),
+      reactReduxFirebase(firebase, rrfConfig),
       reduxFirestore(firebase),
       applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore }))
     )

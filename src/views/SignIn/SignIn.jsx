@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Field } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 import Input from "../../components/UI/Input/Input";
@@ -17,11 +17,6 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 import { useStyles } from "../../components/assits/styles";
 
-const MessageWrapper = styled.div`
-  position: absolute;
-  bottom: 0;
-`;
-
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email.")
@@ -36,6 +31,7 @@ const SignIn = ({ login, loading, error, cleanUp }) => {
   const [password, showPassword] = React.useState({
     showPassword: false,
   });
+  console.log("sgsdgdsg");
 
   const handleClickShowPassword = () => {
     showPassword({ showPassword: !password.showPassword });
@@ -52,7 +48,7 @@ const SignIn = ({ login, loading, error, cleanUp }) => {
       }}
     >
       {({ isSubmitting, isValid }) => (
-        <form className={classes.form}>
+        <Form className={classes.form}>
           <Grid
             className={classes.formWrapper}
             container
@@ -125,11 +121,9 @@ const SignIn = ({ login, loading, error, cleanUp }) => {
                 )}
               </Grid>
               <Grid item>
-                <MessageWrapper>
-                  <Message error show={error}>
-                    {error}
-                  </Message>
-                </MessageWrapper>
+                <Message error show={error}>
+                  {error}
+                </Message>
               </Grid>
               <Grid item>
                 <Typography
@@ -142,7 +136,7 @@ const SignIn = ({ login, loading, error, cleanUp }) => {
               </Grid>
             </Paper>
           </Grid>
-        </form>
+        </Form>
       )}
     </Formik>
   );

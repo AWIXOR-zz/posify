@@ -10,12 +10,12 @@ const store = configureStore();
 console.log(store.getState());
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ReduxProvider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ReduxProvider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <ReduxProvider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ReduxProvider>,
+  // </React.StrictMode>,
   document.getElementById("root")
 );

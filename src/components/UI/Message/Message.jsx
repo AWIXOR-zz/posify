@@ -2,15 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const P = styled.p`
-  font-weight: 700;
-  font-size: 1.2rem;
+  font-weight: 500;
+  font-size: 1rem;
   color: ${({ error, success }) => {
-    if (error) return "var(--color-errorRed)";
+    if (error) return "#ff5757";
     if (success) return "green";
-    else return "var(--color-main)";
+    else return "#003459";
   }};
   opacity: ${({ show }) => (show ? "1" : "0")};
-  transform: translateY(${({ show }) => (show ? "30px" : "0px")});
   text-align: center;
   transition: all 0.2s;
 `;

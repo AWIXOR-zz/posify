@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import { Formik, Field } from "formik";
+import { Formik, Form, Field } from "formik";
+import { useSelector, useDispatch } from "react-redux";
+
 import * as Yup from "yup";
-import styled from "styled-components";
+
 import Message from "../../components/UI/Message/Message";
 import Input from "../../components/UI/Input/Input";
 import * as actions from "../../redux/actions/authActions";
@@ -15,22 +17,13 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import { useSelector, useDispatch } from "react-redux";
 
 import { useStyles } from "../../components/assits/styles";
 
-const MessageWrapper = styled.div`
-  position: absolute;
-  bottom: 0;
-`;
 const SignUpSchema = Yup.object().shape({
   fullName: Yup.string()
-    .required("Your full name is required.")
+    .required("Your fullname is required.")
     .min(6, "Too short.")
-    .max(25, "Too long."),
-  businessName: Yup.string()
-    .required("Your business name is required.")
-    .min(3, "Too short.")
     .max(25, "Too long."),
   email: Yup.string()
     .email("Invalid email.")
@@ -38,23 +31,26 @@ const SignUpSchema = Yup.object().shape({
   password: Yup.string()
     .required("The passoword is required.")
     .min(8, "The password is too short."),
+  businessName: Yup.string()
+    .required("Your business name is required.")
+    .min(3, "Too short.")
+    .max(25, "Too long."),
 });
 
 const SignUp = () => {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.authReducer);
-  console.log(loading);
+  const { loading, error } = useSelector((state) => state.auth);
 
   const { signUp, clean } = actions;
   const [password, showPassword] = React.useState({
     showPassword: false,
   });
 
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(clean);
-  //   };
-  // }, [clean]);
+  useEffect(() => {
+    return () => {
+      dispatch(clean);
+    };
+  }, [clean]);
 
   const handleClickShowPassword = () => {
     showPassword({ showPassword: !password.showPassword });
@@ -76,7 +72,8 @@ const SignUp = () => {
       }}
     >
       {({ isSubmitting, isValid }) => (
-        <form className={classes.form}>
+        <Form className={classes.form}>
+          {console.log(isSubmitting, isValid)}
           <Grid
             className={classes.formWrapper}
             container
@@ -100,7 +97,6 @@ const SignUp = () => {
                   name="fullName"
                   type="text"
                   placeholder="fullName"
-                  required
                 />
               </Grid>
               <Grid item sm className={classes.formInput}>
@@ -113,7 +109,6 @@ const SignUp = () => {
                   name="email"
                   type="email"
                   placeholder="Email"
-                  required
                 />
               </Grid>
               <Grid item sm className={classes.formInput}>
@@ -126,7 +121,6 @@ const SignUp = () => {
                   name="password"
                   type={password.showPassword ? "text" : "password"}
                   placeholder="Password"
-                  required
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">
@@ -155,9 +149,9 @@ const SignUp = () => {
                   name="businessName"
                   type="text"
                   placeholder="Business Name"
-                  required
                 />
               </Grid>
+
               <Grid item>
                 {!loading ? (
                   <Button
@@ -176,11 +170,9 @@ const SignUp = () => {
                 )}
               </Grid>
               <Grid item>
-                <MessageWrapper>
-                  <Message error show={error}>
-                    {error}
-                  </Message>
-                </MessageWrapper>
+                <Message error show={error}>
+                  {error}
+                </Message>
               </Grid>
               <Grid item>
                 <Typography
@@ -204,7 +196,7 @@ const SignUp = () => {
               </Grid>
             </Paper>
           </Grid>
-        </form>
+        </Form>
       )}
     </Formik>
   );

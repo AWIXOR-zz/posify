@@ -20,11 +20,11 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   paper: {
-    padding: theme.spacing(6),
+    padding: `${theme.spacing(2)}px ${theme.spacing(5)}px`,
   },
   formInput: {
     flexGrow: 0,
-    margin: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
   textField: {
     width: `100%`,
