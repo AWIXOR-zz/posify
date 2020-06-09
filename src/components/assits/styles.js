@@ -91,6 +91,15 @@ export const useStyles = makeStyles((theme) => ({
       width: theme.spacing(9) + 1,
     },
   },
+  sidebarFooter: {
+    height: "35px",
+  },
+  sidebarFooterP: {
+    alignItems: "center",
+    display: "flex",
+    justifyContent: "center",
+    textAlign: "center",
+  },
   toolbar: {
     display: "flex",
     alignItems: "center",

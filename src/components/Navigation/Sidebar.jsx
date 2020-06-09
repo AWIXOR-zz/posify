@@ -2,24 +2,24 @@ import React from "react";
 import clsx from "clsx";
 import { useTheme } from "@material-ui/core/styles";
 import { useStyles } from "../../components/assits/styles";
-
+import navbarItems from "../../data/side-nav-items";
+import SidebarItem from "./SidebarItem";
 import {
   Divider,
   Drawer,
   List,
-  ListItem,
-  ListItemText,
+  IconButton,
+  Typography,
+  Box,
 } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 function Sidebar({ handleDrawerClose, open }) {
   const classes = useStyles();
   const theme = useTheme();
+  const items = navbarItems();
 
   return (
     <Drawer
@@ -45,27 +45,30 @@ function Sidebar({ handleDrawerClose, open }) {
         </IconButton>
       </div>
       <Divider />
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        flexDirection="column"
+        height="100%"
+      >
+        <List>
+          {items.map((item, idx) => (
+            <SidebarItem key={idx} item={item} />
+          ))}
+        </List>
+        {open ? (
+          <div className={classes.sidebarFooter}>
+            <Typography
+              className={classes.sidebarFooterP}
+              component="p"
+              color="textSecondary"
+            >
+              Made with <FavoriteIcon fontSize="small" color="disabled" />
+              by Awixor
+            </Typography>
+          </div>
+        ) : null}
+      </Box>
     </Drawer>
   );
 }
