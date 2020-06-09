@@ -5,7 +5,6 @@ const drawerWidth = 240;
 export const useStyles = makeStyles((theme) => ({
   containerAll: {
     display: "flex",
-    color: "#eeeee",
   },
   form: {
     height: "100%",
@@ -51,6 +50,12 @@ export const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+  },
+  navbarWraper: {
+    justifyContent: "space-between",
+  },
+  userAcionsBtn: {
+    minWidth: theme.spacing(4),
   },
   appBarShift: {
     marginLeft: drawerWidth,
