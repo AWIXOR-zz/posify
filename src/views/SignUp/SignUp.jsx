@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -42,7 +42,7 @@ const SignUp = () => {
   const { loading, error } = useSelector((state) => state.auth);
 
   const { signUp, clean } = actions;
-  const [password, showPassword] = React.useState({
+  const [password, showPassword] = useState({
     showPassword: false,
   });
 
