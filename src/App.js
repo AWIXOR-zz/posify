@@ -9,6 +9,7 @@ import Test from "./views/test/Test";
 import Sales from "./views/Dashboard/Sales";
 import Items from "./views/Dashboard/Items";
 import AllItems from "./components/AllItems/AllItems";
+import EditItem from "./components/EditItem/EditItem";
 import "./App.css";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/logout" component={Logout} />
         <Route exact path="/items" component={Items} />
         <Route exact path="/items/items" component={AllItems} />
+        <Route path="/items/items" component={EditItem} />
         <Redirect to="/" />
       </Switch>
     );

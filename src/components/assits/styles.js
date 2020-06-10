@@ -143,4 +143,5 @@ export const useStyles = makeStyles((theme) => ({
   outStock: {
     color: "#f44336",
   },
+  textCenter: { textAlign: "center" },
 }));

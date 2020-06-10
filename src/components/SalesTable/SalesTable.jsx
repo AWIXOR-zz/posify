@@ -8,13 +8,10 @@ import {
   FormControl,
   MenuItem,
   Select,
-  InputAdornment,
-  IconButton,
 } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import SalesItems from "../SalesItems/SalesItems";
-import SearchIcon from "@material-ui/icons/Search";
 import { useStyles } from "../assits/styles";
 
 function SalesTable() {

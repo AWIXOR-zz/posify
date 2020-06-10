@@ -10,7 +10,7 @@ import {
   Icon,
 } from "@material-ui/core";
 import { useStyles } from "../../components/assits/styles";
-
+import PageTitle from "../common/PageTitle";
 function AllItems({ history }) {
   const classes = useStyles();
   function createData(icon, name, price) {
@@ -26,35 +26,44 @@ function AllItems({ history }) {
 
   return (
     <Grid>
-      <Paper className={classes.salesPaper}>
-        <div className={classes.contentWrapper}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.name}
-                  hover={true}
-                  onClick={() =>
-                    history.push(`/items/items/${row.name.toLowerCase()}`)
-                  }
-                  style={{ cursor: "pointer" }}
-                >
-                  <TableCell>
-                    <Icon color="secondary">{row.icon}</Icon>
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-                  <TableCell align="right" className={classes.inStock}>
-                    {row.price}
-                  </TableCell>
-                  <TableCell align="right">{row.invetory}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </Paper>
+      <Grid item>
+        <PageTitle
+          title="All Products"
+          subtitle="DASHBOARD"
+          className="text-sm-left"
+        />
+      </Grid>
+      <Grid item>
+        <Paper className={classes.salesPaper}>
+          <div className={classes.contentWrapper}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow
+                    key={row.name}
+                    hover={true}
+                    onClick={() =>
+                      history.push(`/items/items/${row.name.toLowerCase()}`)
+                    }
+                    style={{ cursor: "pointer" }}
+                  >
+                    <TableCell>
+                      <Icon color="secondary">{row.icon}</Icon>
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell align="right" className={classes.inStock}>
+                      {(Math.round(row.price * 100) / 100).toFixed(2)}
+                    </TableCell>
+                    <TableCell align="right">{row.invetory}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </Paper>
+      </Grid>
     </Grid>
   );
 }
