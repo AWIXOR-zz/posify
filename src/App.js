@@ -8,6 +8,7 @@ import Logout from "./views/Logout/Logout";
 import Test from "./views/test/Test";
 import Sales from "./views/Dashboard/Sales";
 import Items from "./views/Dashboard/Items";
+import AllItems from "./components/AllItems/AllItems";
 import "./App.css";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/sales" component={Sales} />
         <Route exact path="/logout" component={Logout} />
         <Route exact path="/items" component={Items} />
+        <Route exact path="/items/items" component={AllItems} />
         <Redirect to="/" />
       </Switch>
     );
