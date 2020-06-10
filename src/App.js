@@ -6,6 +6,7 @@ import SignIn from "./views/SignIn/SignIn";
 import SignUp from "./views/SignUp/SignUp";
 import Logout from "./views/Logout/Logout";
 import Test from "./views/test/Test";
+import Sales from "./views/Dashboard/Sales";
 import Dashboard from "./views/Dashboard/Dashboard";
 import "./App.css";
 
@@ -16,9 +17,9 @@ function App() {
   if (loggedIn) {
     routes = (
       <Switch>
-        <Route exact path="/" component={Dashboard} />
+        <Route exact path="/sales" component={Sales} />
         <Route exact path="/logout" component={Logout} />
-        <Route exact path="/test" component={Test} />
+        <Route exact path="/sales" component={Sales} />
         <Redirect to="/" />
       </Switch>
     );

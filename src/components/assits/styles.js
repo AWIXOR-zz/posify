@@ -115,4 +115,24 @@ export const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  salesPaper: {
+    maxWidth: 936,
+    margin: "auto",
+    overflow: "hidden",
+  },
+  formControl: {
+    width: "25em",
+  },
+  searchBar: {
+    borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+  },
+  searchInput: {
+    fontSize: theme.typography.fontSize,
+  },
+  block: {
+    display: "flex",
+  },
+  contentWrapper: {
+    margin: "40px 16px",
+  },
 }));

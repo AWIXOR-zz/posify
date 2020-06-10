@@ -1,15 +1,16 @@
 import React from "react";
-import { ListItem, ListItemText, Divider, Link } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { ListItem, ListItemText, Divider } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 function SidebarItem({ item }) {
   return (
     <div>
       {item.title === "Logout" ? <Divider /> : null}
       <Link
-        href={item.to}
+        to={item.to}
         underline="none"
         color="inherit"
-        onClick={(event) => event.preventDefault()}
+        // onClick={(event) => event.preventDefault()}
       >
         <ListItem button>
           <ListItemIcon>
