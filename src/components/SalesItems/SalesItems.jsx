@@ -1,42 +1,63 @@
 import React from "react";
-import { TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
+import {
+  TableHead,
+  Box,
+  TableRow,
+  TableCell,
+  TableBody,
+} from "@material-ui/core";
 import Table from "@material-ui/core/Table";
+import ImageIcon from "@material-ui/icons/Image";
 import { useStyles } from "../assits/styles";
 
 function SalesItems() {
   const classes = useStyles();
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
+  function createData(name, invetory, detials) {
+    return { name, invetory, detials };
   }
   const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
+    createData("Frozen yoghurt", 159),
+    createData("Ice cream sandwich", 237),
+    createData("Eclair", 0),
+    createData("Cupcake", 305),
+    createData("Gingerbread", 0),
   ];
   return (
     <div className={classes.contentWrapper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell></TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Invetory</TableCell>
+            <TableCell align="right">Details&nbsp;(g)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.name}>
+            <TableRow
+              key={row.name}
+              hover={true}
+              onClick={() => console.log("helloo") /*dispatch an action*/}
+              style={{ cursor: "pointer" }}
+            >
+              <TableCell>
+                <Box className={classes.productImage}>
+                  <ImageIcon color="secondary" />
+                </Box>
+              </TableCell>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell
+                align="right"
+                className={
+                  row.invetory > 0 ? classes.inStock : classes.outStock
+                }
+              >
+                {row.invetory > 0 ? "In stock" : "Out of stock"}
+              </TableCell>
+              <TableCell align="right">{row.invetory}</TableCell>
             </TableRow>
           ))}
         </TableBody>

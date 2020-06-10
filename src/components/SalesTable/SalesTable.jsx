@@ -8,7 +8,11 @@ import {
   FormControl,
   MenuItem,
   Select,
+  InputAdornment,
+  IconButton,
 } from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+
 import SalesItems from "../SalesItems/SalesItems";
 import SearchIcon from "@material-ui/icons/Search";
 import { useStyles } from "../assits/styles";
@@ -39,8 +43,8 @@ function SalesTable() {
         elevation={0}
       >
         <Toolbar>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item>
+          <Grid container spacing={2}>
+            <Grid item className={classes.allItems}>
               <FormControl className={classes.formControl}>
                 <Select
                   displayEmpty={true}
@@ -63,17 +67,19 @@ function SalesTable() {
               </FormControl>
             </Grid>
             <Grid item xs>
-              <TextField
-                fullWidth
-                placeholder="Search by product name"
-                InputProps={{
-                  disableUnderline: true,
-                  className: classes.searchInput,
-                }}
+              <Autocomplete
+                id="combo-box-demo"
+                options={top100Films}
+                freeSolo
+                getOptionLabel={(option) => option.title}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Search here"
+                    variant="outlined"
+                  />
+                )}
               />
-            </Grid>
-            <Grid item>
-              <SearchIcon className={classes.block} color="inherit" />
             </Grid>
           </Grid>
         </Toolbar>
@@ -82,5 +88,18 @@ function SalesTable() {
     </Paper>
   );
 }
-
+const top100Films = [
+  { title: "The Shawshank Redemption", year: 1994 },
+  { title: "The Godfather", year: 1972 },
+  { title: "The Godfather: Part II", year: 1974 },
+  { title: "The Dark Knight", year: 2008 },
+  { title: "12 Angry Men", year: 1957 },
+  { title: "Schindler's List", year: 1993 },
+  { title: "Pulp Fiction", year: 1994 },
+  { title: "The Lord of the Rings: The Return of the King", year: 2003 },
+  { title: "The Good, the Bad and the Ugly", year: 1966 },
+  { title: "Fight Club", year: 1999 },
+  { title: "The Lord of the Rings: The Fellowship of the Ring", year: 2001 },
+  { title: "Star Wars: Episode V - The Empire Strikes Back", year: 1980 },
+];
 export default SalesTable;

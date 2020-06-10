@@ -120,19 +120,27 @@ export const useStyles = makeStyles((theme) => ({
     margin: "auto",
     overflow: "hidden",
   },
-  formControl: {
-    width: "25em",
-  },
+  formControl: { width: "100%" },
   searchBar: {
     borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
   },
-  searchInput: {
-    fontSize: theme.typography.fontSize,
-  },
-  block: {
-    display: "flex",
-  },
+  allItems: { flexGrow: 1 },
   contentWrapper: {
     margin: "40px 16px",
+  },
+  productImage: {
+    display: "flex",
+    backgroundColor: `rgb(28, 32, 37)`,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "16px",
+    width: "68px",
+    height: "68px",
+  },
+  inStock: {
+    color: "#4caf50",
+  },
+  outStock: {
+    color: "#f44336",
   },
 }));
