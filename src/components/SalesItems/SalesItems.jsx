@@ -5,9 +5,9 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Table,
+  Icon,
 } from "@material-ui/core";
-import Table from "@material-ui/core/Table";
-import ImageIcon from "@material-ui/icons/Image";
 import { useStyles } from "../assits/styles";
 
 function SalesItems() {
@@ -43,7 +43,7 @@ function SalesItems() {
             >
               <TableCell>
                 <Box className={classes.productImage}>
-                  <ImageIcon color="secondary" />
+                  <Icon color="secondary">image</Icon>
                 </Box>
               </TableCell>
               <TableCell component="th" scope="row">

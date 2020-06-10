@@ -7,7 +7,7 @@ import SignUp from "./views/SignUp/SignUp";
 import Logout from "./views/Logout/Logout";
 import Test from "./views/test/Test";
 import Sales from "./views/Dashboard/Sales";
-import Dashboard from "./views/Dashboard/Dashboard";
+import Items from "./views/Dashboard/Items";
 import "./App.css";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
       <Switch>
         <Route exact path="/sales" component={Sales} />
         <Route exact path="/logout" component={Logout} />
-        <Route exact path="/sales" component={Sales} />
+        <Route exact path="/items" component={Items} />
         <Redirect to="/" />
       </Switch>
     );

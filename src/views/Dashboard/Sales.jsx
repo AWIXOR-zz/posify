@@ -9,7 +9,7 @@ function Sales() {
           variant="contained"
           color="primary"
           size="large"
-          //   className={classes.button}
+          // className={classes.salesButton}
           endIcon={<Icon>payment</Icon>}
         >
           Charge
