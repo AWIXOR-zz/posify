@@ -13,6 +13,7 @@ import Items from "./views/Dashboard/Items";
 import AllItems from "./components/AllItems/AllItems";
 import AllCategories from "./components/AllCategories/AllCategories";
 import EditItem from "./components/EditItem/EditItem";
+import VerifyEmail from "./views/VerifyEmail/VerifyEmail";
 
 export default {
   LoggedIn: [
@@ -71,6 +72,18 @@ export default {
       path: "/sign-up",
       layout: SimpleLayout,
       component: SignUp,
+    },
+  ],
+  NotVerified: [
+    {
+      path: "/verify-email",
+      layout: SimpleLayout,
+      component: VerifyEmail,
+    },
+    {
+      path: "/logout",
+      layout: SimpleLayout,
+      component: Logout,
     },
   ],
 };

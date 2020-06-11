@@ -14,7 +14,10 @@ export const useStyles = makeStyles((theme) => ({
     margin: "0 auto",
     padding: "3em 8rem",
   },
-  formWrapperSignIn: {
+  maxWidth25rem: {
+    maxWidth: "25rem",
+  },
+  padding8rem: {
     padding: "8rem 8rem",
   },
   paper: {
@@ -33,6 +36,12 @@ export const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+  },
+  removeLinkStyles: {
+    textDecoration: "none",
+    "&:hover": {
+      color: "white",
+    },
   },
   title: {
     flexGrow: 1,

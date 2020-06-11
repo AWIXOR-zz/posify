@@ -2,6 +2,10 @@ export default {
   auth: {
     error: null,
     loading: false,
+    verifyEmail: {
+      error: null,
+      loading: false,
+    },
   },
   products: [
     {

@@ -6,9 +6,9 @@ import "./App.css";
 
 import routes from "./routes";
 function App() {
-  const { uid } = useSelector((state) => state.firebase.auth);
+  const { uid, emailVerified } = useSelector((state) => state.firebase.auth);
   const loggedIn = uid ? true : null;
-  if (loggedIn) {
+  if (loggedIn && emailVerified) {
     return (
       <Switch>
         {routes.LoggedIn.map((route, index) => {
@@ -28,6 +28,28 @@ function App() {
           );
         })}
         <Redirect to="/" />
+      </Switch>
+    );
+  } else if (loggedIn && !emailVerified) {
+    return (
+      <Switch>
+        {routes.NotVerified.map((route, index) => {
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              component={(props) => {
+                return (
+                  <route.layout {...props}>
+                    <route.component {...props} />
+                  </route.layout>
+                );
+              }}
+            />
+          );
+        })}
+        <Redirect to="/verify-email" />
       </Switch>
     );
   } else {

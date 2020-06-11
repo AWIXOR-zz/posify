@@ -62,7 +62,7 @@ const SignIn = () => {
       {({ isSubmitting, isValid }) => (
         <Form className={classes.form}>
           <Grid
-            className={classes.formWrapperSignIn}
+            className={classes.padding8rem}
             container
             direction="column"
             justify="center"

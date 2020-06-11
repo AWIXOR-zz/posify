@@ -25,6 +25,20 @@ const authReducer = (state = initialState.auth, { type, payload }) => {
         draft.error = false;
         draft.loading = false;
       });
+    case actions.VERIFY_START:
+      return produce(state, (draft) => {
+        draft.verifyEmail.loading = true;
+      });
+    case actions.VERIFY_SUCCESS:
+      return produce(state, (draft) => {
+        draft.verifyEmail.loading = false;
+        draft.verifyEmail.error = false;
+      });
+    case actions.VERIFY_FAIL:
+      return produce(state, (draft) => {
+        draft.verifyEmail.loading = false;
+        draft.verifyEmail.error = payload;
+      });
     default:
       return state;
   }
