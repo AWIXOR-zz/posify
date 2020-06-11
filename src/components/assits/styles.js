@@ -7,22 +7,15 @@ export const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   form: {
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
     textAlign: "center",
   },
   formWrapper: {
-    height: "100%",
-    width: "100%",
     maxWidth: "40rem",
     margin: "0 auto",
-    borderRadius: "0.7rem",
-    padding: "10rem 8rem",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    padding: "3em 8rem",
+  },
+  formWrapperSignIn: {
+    padding: "8rem 8rem",
   },
   paper: {
     padding: `${theme.spacing(2)}px ${theme.spacing(5)}px`,
@@ -113,7 +106,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(1),
   },
   salesPaper: {
     maxWidth: 936,

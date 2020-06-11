@@ -38,6 +38,8 @@ const SignUpSchema = Yup.object().shape({
 });
 
 const SignUp = () => {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.auth);
 
@@ -50,13 +52,12 @@ const SignUp = () => {
     return () => {
       dispatch(clean);
     };
-  }, [clean]);
+  });
 
   const handleClickShowPassword = () => {
     showPassword({ showPassword: !password.showPassword });
   };
 
-  const classes = useStyles();
   return (
     <Formik
       initialValues={{

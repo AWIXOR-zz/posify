@@ -1,6 +1,9 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from "../../redux/actions/authActions";
+
 import Input from "../../components/UI/Input/Input";
 import Message from "../../components/UI/Message/Message";
 import {
@@ -25,16 +28,25 @@ const LoginSchema = Yup.object().shape({
     .min(8, "Too short."),
 });
 
-const SignIn = ({ login, loading, error, cleanUp }) => {
+const SignIn = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.auth);
+  const { signIn, clean } = actions;
+
   const [password, showPassword] = React.useState({
     showPassword: false,
   });
-  console.log("sgsdgdsg");
 
   const handleClickShowPassword = () => {
     showPassword({ showPassword: !password.showPassword });
   };
+
+  React.useEffect(() => {
+    return () => {
+      dispatch(clean);
+    };
+  });
   return (
     <Formik
       initialValues={{
@@ -43,13 +55,14 @@ const SignIn = ({ login, loading, error, cleanUp }) => {
       }}
       validationSchema={LoginSchema}
       onSubmit={async (values, { setSubmitting }) => {
-        console.log("thjings");
+        await dispatch(signIn(values));
+        setSubmitting(false);
       }}
     >
       {({ isSubmitting, isValid }) => (
         <Form className={classes.form}>
           <Grid
-            className={classes.formWrapper}
+            className={classes.formWrapperSignIn}
             container
             direction="column"
             justify="center"
@@ -130,7 +143,7 @@ const SignIn = ({ login, loading, error, cleanUp }) => {
                   component="h2"
                   color="textSecondary"
                 >
-                  Don’t have an account? <a href="/register">Create it here</a>
+                  Don’t have an account? <a href="/sign-up">Create it here</a>
                 </Typography>
               </Grid>
             </Paper>
