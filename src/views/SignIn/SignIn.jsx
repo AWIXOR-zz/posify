@@ -145,6 +145,13 @@ const SignIn = () => {
                 >
                   Don’t have an account? <a href="/sign-up">Create it here</a>
                 </Typography>
+                <Typography
+                  variant="body2"
+                  component="h2"
+                  color="textSecondary"
+                >
+                  Forgot passoword? <a href="/recover">Click here to recover</a>
+                </Typography>
               </Grid>
             </Paper>
           </Grid>

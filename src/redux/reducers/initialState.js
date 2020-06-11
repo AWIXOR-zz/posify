@@ -6,6 +6,10 @@ export default {
       error: null,
       loading: false,
     },
+    recoverPassword: {
+      error: null,
+      loading: false,
+    },
   },
   products: [
     {

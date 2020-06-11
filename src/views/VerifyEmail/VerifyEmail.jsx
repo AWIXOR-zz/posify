@@ -10,7 +10,6 @@ import {
   Paper,
   Icon,
   CircularProgress,
-  IconButton,
 } from "@material-ui/core";
 import Message from "../../components/UI/Message/Message";
 
@@ -24,7 +23,7 @@ function VerifyEmail() {
     return () => {
       dispatch(clean);
     };
-  }, []);
+  });
   return (
     <Grid
       className={classes.padding8rem}

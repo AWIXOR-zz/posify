@@ -14,6 +14,7 @@ import AllItems from "./components/AllItems/AllItems";
 import AllCategories from "./components/AllCategories/AllCategories";
 import EditItem from "./components/EditItem/EditItem";
 import VerifyEmail from "./views/VerifyEmail/VerifyEmail";
+import RecoverPassword from "./views/RecoverPassword/RecoverPassword";
 
 export default {
   LoggedIn: [
@@ -72,6 +73,11 @@ export default {
       path: "/sign-up",
       layout: SimpleLayout,
       component: SignUp,
+    },
+    {
+      path: "/recover",
+      layout: SimpleLayout,
+      component: RecoverPassword,
     },
   ],
   NotVerified: [

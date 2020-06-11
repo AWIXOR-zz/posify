@@ -39,6 +39,20 @@ const authReducer = (state = initialState.auth, { type, payload }) => {
         draft.verifyEmail.loading = false;
         draft.verifyEmail.error = payload;
       });
+    case actions.RECOVERY_START:
+      return produce(state, (draft) => {
+        draft.recoverPassword.loading = true;
+      });
+    case actions.RECOVERY_SUCCESS:
+      return produce(state, (draft) => {
+        draft.recoverPassword.loading = false;
+        draft.recoverPassword.error = false;
+      });
+    case actions.RECOVERY_FAIL:
+      return produce(state, (draft) => {
+        draft.recoverPassword.loading = false;
+        draft.recoverPassword.error = payload;
+      });
     default:
       return state;
   }

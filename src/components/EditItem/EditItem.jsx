@@ -23,8 +23,8 @@ import PageTitle from "../common/PageTitle";
 function EditItem() {
   const classes = useStyles();
   const [product, setProduct] = React.useState("");
-  const [category, setCategory] = React.useState("");
-  const [price, setPrice] = React.useState(null);
+  const [setCategory] = React.useState("");
+  const [setPrice] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [value, setRadio] = React.useState("Each");
 

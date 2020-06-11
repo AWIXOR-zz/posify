@@ -6,7 +6,6 @@ import {
   TableCell,
   TableBody,
   Table,
-  Icon,
 } from "@material-ui/core";
 import { useStyles } from "../assits/styles";
 
