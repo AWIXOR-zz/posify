@@ -8,3 +8,7 @@ export const CLEAN_UP = "CLEAN_UP";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const EDIT_PRODUCT = "EDIT_PRODUCT";
+
+export const ADD_CATEGORY = "ADD_CATEGORY";
+export const REMOVE_CATEGORY = "REMOVE_CATEGORY";
+export const EDIT_CATEGORY = "EDIT_CATEGORY";

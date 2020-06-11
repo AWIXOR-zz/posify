@@ -2,17 +2,20 @@ import initialState from "./initialState";
 import * as actions from "../actions/actionTypes";
 import produce from "immer";
 
-const productsReducer = (state = initialState.products, { type, payload }) => {
+const categoryReducer = (
+  state = initialState.categories,
+  { type, payload }
+) => {
   switch (type) {
-    case actions.ADD_PRODUCT:
+    case actions.ADD_CATEGORY:
       return produce(state, (draft) => {
         draft.loading = true;
       });
-    case actions.REMOVE_PRODUCT:
+    case actions.REMOVE_CATEGORY:
       return produce(state, (draft) => {
         draft.loading = false;
       });
-    case actions.EDIT_PRODUCT:
+    case actions.EDIT_CATEGORY:
       return produce(state, (draft) => {
         draft.error = payload;
       });
@@ -20,4 +23,4 @@ const productsReducer = (state = initialState.products, { type, payload }) => {
       return state;
   }
 };
-export default productsReducer;
+export default categoryReducer;

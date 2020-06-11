@@ -128,6 +128,12 @@ export const useStyles = makeStyles((theme) => ({
   contentWrapper: {
     margin: "40px 16px",
   },
+  cardPadding: {
+    padding: theme.spacing(2),
+  },
+  buttonMargin: {
+    margin: theme.spacing(1),
+  },
   productImage: {
     display: "flex",
     backgroundColor: `rgb(28, 32, 37)`,

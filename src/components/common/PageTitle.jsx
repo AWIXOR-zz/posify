@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core";
 const PageTitle = ({ title, subtitle, className, ...attrs }) => {
   return (
     <div>
-      <Typography variant="body2" component="body2" color="textSecondary">
+      <Typography variant="body2" component="p" color="textSecondary">
         {subtitle}
       </Typography>
       <Typography variant="h5" component="h5" color="primary">

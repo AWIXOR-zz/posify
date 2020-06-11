@@ -13,8 +13,10 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
+  ButtonGroup,
 } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 import { useStyles } from "../../components/assits/styles";
 import PageTitle from "../common/PageTitle";
@@ -50,8 +52,8 @@ function EditItem() {
         />
       </Grid>
       <Grid item>
-        <Paper>
-          <Card>
+        <Paper className={classes.salesPaper}>
+          <Card className={classes.cardPadding}>
             <CardContent>
               <Grid
                 container
@@ -128,10 +130,20 @@ function EditItem() {
                 </Grid>
                 <Grid item xs={8} className={classes.textCenter}>
                   <Button
+                    margin="dense"
+                    variant="contained"
+                    color="secondary"
+                    size="large"
+                    className={classes.buttonMargin}
+                    startIcon={<DeleteIcon />}
+                  >
+                    Save
+                  </Button>
+                  <Button
                     variant="contained"
                     color="primary"
                     size="large"
-                    className={classes.button}
+                    className={classes.buttonMargin}
                     startIcon={<SaveIcon />}
                   >
                     Save

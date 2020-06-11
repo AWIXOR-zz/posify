@@ -43,7 +43,10 @@ function SalesItems() {
             >
               <TableCell>
                 <Box className={classes.productImage}>
-                  <Icon color="secondary">image</Icon>
+                  <img
+                    src="http://lorempixel.com/100/100/food"
+                    alt={row.name}
+                  />
                 </Box>
               </TableCell>
               <TableCell component="th" scope="row">

@@ -1,22 +1,21 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import DisplayItems from "../DisplayItems/DisplayItems";
 import { useSelector } from "react-redux";
 import PageTitle from "../common/PageTitle";
-function AllItems({ history }) {
-  const products = useSelector((state) => state.product);
+function AllCategories() {
+  const categories = useSelector((state) => state.category);
 
   return (
     <Grid>
       <Grid item>
-        <PageTitle title="All Products" subtitle="DASHBOARD" />
+        <PageTitle title="All Categories" subtitle="DASHBOARD" />
       </Grid>
       <Grid item>
-        <DisplayItems items={products} />
+        <DisplayItems items={categories} category />
       </Grid>
     </Grid>
   );
 }
 
-export default withRouter(AllItems);
+export default AllCategories;
