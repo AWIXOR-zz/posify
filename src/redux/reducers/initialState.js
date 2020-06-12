@@ -10,6 +10,10 @@ export default {
       error: null,
       loading: false,
     },
+    profileEdit: {
+      error: null,
+      loading: false,
+    },
   },
   products: [
     {

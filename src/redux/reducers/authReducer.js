@@ -4,6 +4,7 @@ import produce from "immer";
 
 const authReducer = (state = initialState.auth, { type, payload }) => {
   switch (type) {
+    //Authentication
     case actions.AUTH_START:
       return produce(state, (draft) => {
         draft.loading = true;
@@ -20,11 +21,15 @@ const authReducer = (state = initialState.auth, { type, payload }) => {
       return produce(state, (draft) => {
         draft.error = false;
       });
+
+    //Clean error and loading
     case actions.CLEAN_UP:
       return produce(state, (draft) => {
         draft.error = false;
         draft.loading = false;
       });
+
+    //Verify email
     case actions.VERIFY_START:
       return produce(state, (draft) => {
         draft.verifyEmail.loading = true;
@@ -39,6 +44,8 @@ const authReducer = (state = initialState.auth, { type, payload }) => {
         draft.verifyEmail.loading = false;
         draft.verifyEmail.error = payload;
       });
+
+    //Recover password
     case actions.RECOVERY_START:
       return produce(state, (draft) => {
         draft.recoverPassword.loading = true;
@@ -53,6 +60,24 @@ const authReducer = (state = initialState.auth, { type, payload }) => {
         draft.recoverPassword.loading = false;
         draft.recoverPassword.error = payload;
       });
+
+    //Profile Edit
+    case actions.PROFILE_EDIT_START:
+      return produce(state, (draft) => {
+        draft.profileEdit.loading = true;
+      });
+    case actions.PROFILE_EDIT_SUCCESS:
+      return produce(state, (draft) => {
+        draft.profileEdit.loading = false;
+        draft.profileEdit.error = false;
+      });
+    case actions.PROFILE_EDIT_FAIL:
+      return produce(state, (draft) => {
+        draft.profileEdit.loading = false;
+        draft.profileEdit.error = payload;
+      });
+
+    //Default
     default:
       return state;
   }

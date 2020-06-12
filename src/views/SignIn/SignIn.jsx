@@ -48,7 +48,7 @@ const SignIn = () => {
     return () => {
       dispatch(clean);
     };
-  });
+  }, [dispatch, clean]);
   return (
     <Grid
       className={classes.paddingTop6}

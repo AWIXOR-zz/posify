@@ -9,16 +9,10 @@ const InputWrapper = styled.div`
   flex-direction: column;
 `;
 
-const StyledInput = styled.div`
-  /* padding-bottom: 1.2rem; */
-`;
-
 const Input = ({ field, ...props }) => {
   return (
     <InputWrapper>
-      <StyledInput>
-        <TextField {...field} {...props} />
-      </StyledInput>
+      <TextField {...field} {...props} />
     </InputWrapper>
   );
 };

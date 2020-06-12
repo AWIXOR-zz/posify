@@ -53,7 +53,7 @@ const SignUp = () => {
     return () => {
       dispatch(clean);
     };
-  }, []);
+  }, [dispatch, clean]);
 
   const handleClickShowPassword = () => {
     showPassword({ showPassword: !password.showPassword });
