@@ -6,9 +6,17 @@ export const useStyles = makeStyles((theme) => ({
   containerAll: {
     display: "flex",
   },
+
+  paddingTop5: {
+    paddingTop: theme.spacing(5),
+  },
+  paddingTop6: {
+    paddingTop: theme.spacing(15),
+  },
   form: {
     textAlign: "center",
   },
+
   formWrapper: {
     maxWidth: "40rem",
     margin: "0 auto",

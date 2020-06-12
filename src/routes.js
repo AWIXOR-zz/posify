@@ -15,7 +15,7 @@ import AllCategories from "./components/AllCategories/AllCategories";
 import EditItem from "./components/EditItem/EditItem";
 import VerifyEmail from "./views/VerifyEmail/VerifyEmail";
 import RecoverPassword from "./views/RecoverPassword/RecoverPassword";
-
+import Settings from "./views/Settings/Settings";
 export default {
   LoggedIn: [
     {
@@ -56,6 +56,11 @@ export default {
       path: "/items/categories",
       layout: DefaultLayout,
       component: EditItem,
+    },
+    {
+      path: "/settings",
+      layout: DefaultLayout,
+      component: Settings,
     },
     {
       path: "/logout",

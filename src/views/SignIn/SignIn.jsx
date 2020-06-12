@@ -11,7 +11,9 @@ import {
   Button,
   CircularProgress,
   Typography,
-  Paper,
+  Card,
+  CardContent,
+  CardHeader,
   InputAdornment,
   IconButton,
 } from "@material-ui/core";
@@ -48,116 +50,131 @@ const SignIn = () => {
     };
   });
   return (
-    <Formik
-      initialValues={{
-        email: "",
-        password: "",
-      }}
-      validationSchema={LoginSchema}
-      onSubmit={async (values, { setSubmitting }) => {
-        await dispatch(signIn(values));
-        setSubmitting(false);
-      }}
+    <Grid
+      className={classes.paddingTop6}
+      container
+      direction="column"
+      justify="center"
+      alignItems="center"
     >
-      {({ isSubmitting, isValid }) => (
-        <Form className={classes.form}>
-          <Grid
-            className={classes.padding8rem}
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
+      <Grid item lg={6} md={6} xl={6} xs={6}>
+        <Card>
+          <CardHeader
+            subheader="Please enter you email and password"
+            title="Sign in"
+            titleTypographyProps={{ variant: "h2" }}
+            color="primary"
+            align="center"
+            component={Typography}
+          />
+          <Formik
+            initialValues={{
+              email: "",
+              password: "",
+            }}
+            validationSchema={LoginSchema}
+            onSubmit={async (values, { setSubmitting }) => {
+              await dispatch(signIn(values));
+              setSubmitting(false);
+            }}
           >
-            <Paper className={classes.paper}>
-              <Grid item>
-                <Typography variant="h2" color="primary" gutterBottom>
-                  Sign In
-                </Typography>
-              </Grid>
-              <Grid item sm className={classes.formInput}>
-                <Field
-                  component={Input}
-                  className={classes.textField}
-                  label="Email"
-                  variant="outlined"
-                  id="email"
-                  name="email"
-                  type="text"
-                  placeholder="Email"
-                  required
-                />
-              </Grid>
-              <Grid item sm className={classes.formInput}>
-                <Field
-                  component={Input}
-                  label="Password"
-                  variant="outlined"
-                  id="password"
-                  name="password"
-                  type={password.showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  required
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
+            {({ isSubmitting, isValid, errors }) => (
+              <Form className={classes.form}>
+                <CardContent>
+                  <Grid container spacing={3}>
+                    <Grid item md={12} xs={12}>
+                      <Field
+                        fullWidth
+                        component={Input}
+                        error={errors.email ? true : false}
+                        helperText={errors.email}
+                        label="Email"
+                        variant="outlined"
+                        id="email"
+                        name="email"
+                        type="text"
+                        placeholder="Email"
+                        required
+                      />
+                    </Grid>
+                    <Grid item md={12} xs={12}>
+                      <Field
+                        fullWidth
+                        component={Input}
+                        error={errors.password ? true : false}
+                        helperText={errors.password}
+                        label="Password"
+                        variant="outlined"
+                        id="password"
+                        name="password"
+                        type={password.showPassword ? "text" : "password"}
+                        placeholder="Password"
+                        required
+                        InputProps={{
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                              >
+                                {password.showPassword ? (
+                                  <Visibility />
+                                ) : (
+                                  <VisibilityOff />
+                                )}
+                              </IconButton>
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    </Grid>
+                    <Grid item md={12} xs={12}>
+                      {!loading ? (
+                        <Button
+                          disabled={!isValid || isSubmitting}
+                          type="submit"
+                          variant="contained"
+                          color="primary"
+                          size="large"
+                          endIcon={
+                            <i className="material-icons">arrow_forward</i>
+                          }
                         >
-                          {password.showPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid item>
-                {!loading ? (
-                  <Button
-                    disabled={!isValid || isSubmitting}
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    className={classes.formButton}
-                    endIcon={<i className="material-icons">arrow_forward</i>}
-                  >
-                    Sign In
-                  </Button>
-                ) : (
-                  <CircularProgress />
-                )}
-              </Grid>
-              <Grid item>
-                <Message error show={error}>
-                  {error}
-                </Message>
-              </Grid>
-              <Grid item>
-                <Typography
-                  variant="body2"
-                  component="h2"
-                  color="textSecondary"
-                >
-                  Don’t have an account? <a href="/sign-up">Create it here</a>
-                </Typography>
-                <Typography
-                  variant="body2"
-                  component="h2"
-                  color="textSecondary"
-                >
-                  Forgot passoword? <a href="/recover">Click here to recover</a>
-                </Typography>
-              </Grid>
-            </Paper>
-          </Grid>
-        </Form>
-      )}
-    </Formik>
+                          Sign In
+                        </Button>
+                      ) : (
+                        <CircularProgress />
+                      )}
+                      <Message error show={error}>
+                        {error}
+                      </Message>
+                    </Grid>
+                    <Grid item md={12} xs={12}>
+                      <Typography
+                        variant="body2"
+                        component="h2"
+                        color="textSecondary"
+                      >
+                        Don’t have an account?{" "}
+                        <a href="/sign-up">Create it here</a>
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        component="h2"
+                        color="textSecondary"
+                      >
+                        Forgot passoword?{" "}
+                        <a href="/recover">Click here to recover</a>
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Form>
+            )}
+          </Formik>
+        </Card>
+      </Grid>
+    </Grid>
   );
 };
 
