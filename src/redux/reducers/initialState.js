@@ -14,6 +14,10 @@ export default {
       error: null,
       loading: false,
     },
+    deleteUser: {
+      loading: false,
+      error: null,
+    },
   },
   products: [
     {

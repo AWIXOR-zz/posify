@@ -76,6 +76,17 @@ const authReducer = (state = initialState.auth, { type, payload }) => {
         draft.profileEdit.loading = false;
         draft.profileEdit.error = payload;
       });
+    //Profile Edit
+    case actions.DELETE_START:
+      return produce(state, (draft) => {
+        draft.deleteUser.loading = true;
+      });
+
+    case actions.DELETE_FAIL:
+      return produce(state, (draft) => {
+        draft.deleteUser.loading = false;
+        draft.deleteUser.error = payload;
+      });
 
     //Default
     default:
