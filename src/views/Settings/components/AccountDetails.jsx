@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import { useSelector, useDispatch } from "react-redux";
+import { useStyles } from "../../../components/assits/styles";
 import Input from "../../../components/UI/Input/Input";
 import Message from "../../../components/UI/Message/Message";
 import Loader from "../../../components/UI/Loader/Loader";
@@ -34,6 +35,7 @@ const ProfileSchema = Yup.object().shape({
 });
 
 const AccountDetails = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const { clean, editProfile } = actions;
   const { firebase, auth } = useSelector((state) => state);
@@ -133,11 +135,10 @@ const AccountDetails = () => {
                   </Grid>
                 </Grid>
                 <Divider />
-                <Grid item md={6} xs={12}>
-                  <CardActions>
+                <Grid item md={12} xs={12}>
+                  <CardActions className={classes.justifyContent}>
                     {!loading ? (
                       <Button
-                        disabled={!isValid || isSubmitting}
                         type="submit"
                         variant="contained"
                         color="primary"
@@ -151,7 +152,7 @@ const AccountDetails = () => {
                     )}
                   </CardActions>
                 </Grid>
-                <Grid item md={6} xs={12}>
+                <Grid item md={12} xs={12}>
                   <Message error show={error}>
                     {error}
                   </Message>

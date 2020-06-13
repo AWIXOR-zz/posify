@@ -67,7 +67,7 @@ const SignUp = () => {
       justify="center"
       alignItems="center"
     >
-      <Grid item lg={6} md={6} xl={6} xs={6}>
+      <Grid item lg={4} md={6} xl={4} xs={6}>
         <Card>
           <CardHeader
             subheader="Please fill in your details"

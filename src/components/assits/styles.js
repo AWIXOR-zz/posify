@@ -17,6 +17,13 @@ export const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
 
+  justifyContent: {
+    justifyContent: "center",
+    marginTop: theme.spacing(2),
+  },
+  marginTop: {
+    marginTop: theme.spacing(2),
+  },
   formWrapper: {
     maxWidth: "40rem",
     margin: "0 auto",
