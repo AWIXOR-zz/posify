@@ -92,7 +92,7 @@ const SignIn = () => {
                         variant="outlined"
                         id="email"
                         name="email"
-                        type="text"
+                        type="email"
                         placeholder="Email"
                         required
                       />

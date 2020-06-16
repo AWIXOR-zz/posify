@@ -16,10 +16,20 @@ export const useStyles = makeStyles((theme) => ({
   form: {
     textAlign: "center",
   },
-
+  avatar: {
+    backgroundColor: theme.palette.success.main,
+    height: 56,
+    width: 56,
+  },
+  actions: {
+    justifyContent: "flex-end",
+  },
   justifyContent: {
     justifyContent: "center",
     marginTop: theme.spacing(2),
+  },
+  action: {
+    flex: 0,
   },
   marginTop: {
     marginTop: theme.spacing(2),

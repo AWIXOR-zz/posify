@@ -5,7 +5,7 @@ import DisplayItems from "../DisplayItems/DisplayItems";
 import { useSelector } from "react-redux";
 import PageTitle from "../common/PageTitle";
 function AllItems({ history }) {
-  const products = useSelector((state) => state.product);
+  const products = useSelector((state) => state.product.items);
 
   return (
     <Grid>
