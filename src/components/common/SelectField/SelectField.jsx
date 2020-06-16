@@ -9,7 +9,6 @@ const SelectField = ({ textFieldProps, options, ...props }) => {
   } = props;
   const { error, helperText, ...field } = fieldToTextField(props);
   const { name } = field;
-  console.log(fieldToTextField(props));
   return (
     <Autocomplete
       {...props}

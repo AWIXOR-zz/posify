@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import * as actions from "../../redux/actions/productsActions";
 import Input from "../UI/Input/Input";
 import SelectField from "../common/SelectField/SelectField";
 import Message from "../UI/Message/Message";
@@ -13,7 +14,6 @@ import {
   Button,
   Dialog,
   DialogContent,
-  DialogContentText,
   DialogActions,
   Grid,
 } from "@material-ui/core";
@@ -33,6 +33,9 @@ const AddProductSchema = Yup.object().shape({
 });
 function AddProduct({ open, handleClose }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { addProduct } = actions;
+
   const { loading, error } = useSelector((state) => state.product);
   const categories = [
     { value: "chocolate", label: "Chocolate" },
@@ -59,11 +62,8 @@ function AddProduct({ open, handleClose }) {
         >
           Add new product
         </Typography>
+        <Divider />
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Please fill the required fields
-          </DialogContentText>
-          <Divider />
           <Formik
             initialValues={{
               name: "",
@@ -73,8 +73,8 @@ function AddProduct({ open, handleClose }) {
             }}
             validationSchema={AddProductSchema}
             onSubmit={async (values, { setSubmitting }) => {
-              // await dispatch(signIn(values));
-              // setSubmitting(false);
+              await dispatch(addProduct(values));
+              setSubmitting(false);
             }}
           >
             {({ isSubmitting, isValid, values, errors }) => (
@@ -138,6 +138,41 @@ function AddProduct({ open, handleClose }) {
                       }}
                     />
                   </Grid>
+                  <Grid item md={12} xs={12} container justify="center">
+                    <Grid
+                      container
+                      md={4}
+                      xs={4}
+                      direction="row"
+                      justify="space-between"
+                      alignItems="center"
+                    >
+                      <Grid item>
+                        <Button
+                          onClick={handleClose}
+                          variant="outlined"
+                          color="secondary"
+                          disabled={loading}
+                        >
+                          Cencel
+                        </Button>
+                      </Grid>
+                      <Grid item>
+                        {" "}
+                        {!loading ? (
+                          <Button
+                            color="primary"
+                            variant="outlined"
+                            type="submit"
+                          >
+                            Add
+                          </Button>
+                        ) : (
+                          <CircularProgress />
+                        )}
+                      </Grid>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Form>
             )}
@@ -146,28 +181,6 @@ function AddProduct({ open, handleClose }) {
             {error}
           </Message>
         </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={handleClose}
-            variant="outlined"
-            color="secondary"
-            disabled={loading}
-          >
-            Cencel
-          </Button>
-          {!loading ? (
-            <Button
-              //   onClick={() => dispatch(deleteUser())}
-              color="primary"
-              variant="outlined"
-              autoFocus
-            >
-              Add
-            </Button>
-          ) : (
-            <CircularProgress />
-          )}
-        </DialogActions>
       </Dialog>
     </div>
   );
