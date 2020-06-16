@@ -73,7 +73,10 @@ function AddProduct({ open, handleClose }) {
             }}
             validationSchema={AddProductSchema}
             onSubmit={async (values, { setSubmitting }) => {
-              await dispatch(addProduct(values));
+              const res = await dispatch(addProduct(values));
+              if (res) {
+                handleClose();
+              }
               setSubmitting(false);
             }}
           >
