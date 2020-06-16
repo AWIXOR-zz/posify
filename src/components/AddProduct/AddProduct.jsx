@@ -79,7 +79,6 @@ function AddProduct({ open, handleClose }) {
           >
             {({ isSubmitting, isValid, values, errors }) => (
               <Form className={classes.form}>
-                {console.log(values)}
                 <Grid container spacing={3}>
                   <Grid item md={12} xs={12}>
                     <Field
@@ -138,40 +137,23 @@ function AddProduct({ open, handleClose }) {
                       }}
                     />
                   </Grid>
-                  <Grid item md={12} xs={12} container justify="center">
-                    <Grid
-                      container
-                      md={4}
-                      xs={4}
-                      direction="row"
-                      justify="space-between"
-                      alignItems="center"
+                  <Grid item md={12} xs={12} container justify="space-between">
+                    <Button
+                      onClick={handleClose}
+                      variant="outlined"
+                      color="secondary"
+                      disabled={loading}
                     >
-                      <Grid item>
-                        <Button
-                          onClick={handleClose}
-                          variant="outlined"
-                          color="secondary"
-                          disabled={loading}
-                        >
-                          Cencel
-                        </Button>
-                      </Grid>
-                      <Grid item>
-                        {" "}
-                        {!loading ? (
-                          <Button
-                            color="primary"
-                            variant="outlined"
-                            type="submit"
-                          >
-                            Add
-                          </Button>
-                        ) : (
-                          <CircularProgress />
-                        )}
-                      </Grid>
-                    </Grid>
+                      Cencel
+                    </Button>
+
+                    {!loading ? (
+                      <Button color="primary" variant="outlined" type="submit">
+                        Add
+                      </Button>
+                    ) : (
+                      <CircularProgress />
+                    )}
                   </Grid>
                 </Grid>
               </Form>

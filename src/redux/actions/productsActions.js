@@ -12,8 +12,10 @@ export const addProduct = (data) => async (
     const res = await firestore.collection("products").doc(userId).get();
     const newProduct = {
       id: new Date().valueOf(),
-      product: data.product,
+      product: data,
     };
+    console.log(res.data());
+
     if (!res.data()) {
       firestore
         .collection("products")
@@ -26,7 +28,7 @@ export const addProduct = (data) => async (
         .collection("products")
         .doc(userId)
         .update({
-          product: [...res.data().products, newProduct],
+          product: [...res.data().product, newProduct],
         });
     }
     dispatch({ type: actions.ADD_PRODUCT_SUCCESS });
