@@ -14,7 +14,6 @@ export const addProduct = (data) => async (
       id: new Date().valueOf(),
       product: data,
     };
-    console.log(res.data());
 
     if (!res.data()) {
       firestore

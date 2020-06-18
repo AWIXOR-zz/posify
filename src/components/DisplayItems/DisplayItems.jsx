@@ -1,8 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { compose } from "redux";
+import { firestoreConnect, useFirestoreConnect } from "react-redux-firebase";
+import { useSelector } from "react-redux";
 import {
   Grid,
-  Paper,
   Card,
   CardContent,
   CardActions,
@@ -10,8 +12,6 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  TableHead,
-  TablePagination,
   Icon,
   Avatar,
   CardHeader,
@@ -20,7 +20,17 @@ import { useStyles } from "../../components/assits/styles";
 import AddProduct from "../AddProduct/AddProduct";
 
 function DisplayItems({ history, items, category }) {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const userId = useSelector((state) => state.firebase.auth.uid);
+  // console.log(userId);
+
+  // useFirestoreConnect([`products]);
+  useFirestoreConnect([
+    {
+      collection: "products",
+      doc: userId,
+    },
+  ]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -112,5 +122,7 @@ function DisplayItems({ history, items, category }) {
     </Grid>
   );
 }
-
+// export default compose(
+//   firestoreConnect((props) => [`products/${props.userId}`])
+// )(DisplayItems);
 export default withRouter(DisplayItems);
