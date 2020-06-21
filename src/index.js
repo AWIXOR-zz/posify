@@ -16,7 +16,9 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 const store = configureStore();
+
 const root = document.getElementById("root");
 ReactDOM.render(
   <>
@@ -33,9 +35,7 @@ store.firebaseAuthIsReady.then(() => {
   ReactDOM.render(
     <ReduxProvider store={store}>
       <BrowserRouter>
-        <>
-          <App />
-        </>
+        <App />
       </BrowserRouter>
     </ReduxProvider>,
     root

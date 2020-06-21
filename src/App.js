@@ -75,7 +75,6 @@ function App() {
       </Switch>
     );
   }
-  // return <Layout>{routes}</Layout>;
 }
 
 export default App;

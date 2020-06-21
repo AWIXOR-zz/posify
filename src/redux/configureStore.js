@@ -5,7 +5,6 @@ import firebase from "../firebase/firebase.utils";
 import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
 import { reduxFirestore, getFirestore } from "redux-firestore";
 
-// import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
 import rootReducer from "./reducers";
 
 // react-redux-firebase config
