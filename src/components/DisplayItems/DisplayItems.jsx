@@ -23,9 +23,12 @@ function DisplayItems({ history, items, category }) {
   const [open, setOpen] = React.useState(false);
   const userId = useSelector((state) => state.firebase.auth.uid);
   // console.log(userId);
+  // const test = useFirestoreConnect("products");
+  // console.log(test);
 
   // useFirestoreConnect([`products/${userId}`]);
-  // useFirestoreConnect(["products"]);
+  const test = useFirestoreConnect(["products"]);
+  console.log(test);
 
   const handleClickOpen = () => {
     setOpen(true);
