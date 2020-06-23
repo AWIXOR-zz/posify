@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { compose } from "redux";
 import { useFirestoreConnect } from "react-redux-firebase";
 
 import { useSelector } from "react-redux";
@@ -22,13 +21,17 @@ import AddProduct from "../AddProduct/AddProduct";
 function DisplayItems({ history, items, category }) {
   const [open, setOpen] = React.useState(false);
   const userId = useSelector((state) => state.firebase.auth.uid);
-  // console.log(userId);
-  // const test = useFirestoreConnect("products");
-  // console.log(test);
+  const products = useSelector((state) => state.firestore.data.products);
+  const requesting = useSelector((state) => state.firestore.status.requesting);
+  const requested = useSelector((state) => state.firestore.status.requested);
+  useFirestoreConnect([
+    {
+      collection: "products",
+      doc: userId,
+    },
+  ]);
 
-  // useFirestoreConnect([`products/${userId}`]);
-  const test = useFirestoreConnect(["products"]);
-  console.log(test);
+  console.log(products);
 
   const handleClickOpen = () => {
     setOpen(true);
