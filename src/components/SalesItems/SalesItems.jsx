@@ -26,7 +26,6 @@ function SalesItems() {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell></TableCell>
             <TableCell>Name</TableCell>
             <TableCell align="right">Invetory</TableCell>
             <TableCell align="right">Details&nbsp;(g)</TableCell>
@@ -40,14 +39,6 @@ function SalesItems() {
               onClick={() => console.log("helloo") /*dispatch an action*/}
               style={{ cursor: "pointer" }}
             >
-              <TableCell>
-                <Box className={classes.productImage}>
-                  <img
-                    src="http://lorempixel.com/100/100/food"
-                    alt={row.name}
-                  />
-                </Box>
-              </TableCell>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>

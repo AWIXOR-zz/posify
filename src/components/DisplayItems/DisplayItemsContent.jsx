@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../UI/Loader/Loader";
 import { useStyles } from "../../components/assits/styles";
-import { useFirestoreConnect } from "react-redux-firebase";
 
 import {
   Typography,
@@ -21,13 +20,6 @@ const DisplayItemsContent = ({ history }) => {
   const products = useSelector((state) => state.firestore.data.products);
   const requesting = useSelector((state) => state.firestore.status.requesting);
   const requested = useSelector((state) => state.firestore.status.requested);
-  console.log(products);
-  useFirestoreConnect([
-    {
-      collection: "products",
-      doc: userId,
-    },
-  ]);
 
   return (
     <div className={classes.contentWrapper}>

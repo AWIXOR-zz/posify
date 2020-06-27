@@ -9,6 +9,7 @@ import firebase from "./firebase/firebase.utils";
 import configureStore from "./redux/configureStore";
 import Loader from "./components/UI/Loader/Loader";
 import App from "./App";
+
 import "./index.css";
 
 const Wrapper = styled.div`
@@ -36,6 +37,11 @@ const rrfProps = {
 
 function AuthIsLoaded({ children }) {
   const auth = useSelector((state) => state.firebase.auth);
+  const ready = useSelector((state) => state.firestore.status.requested);
+
+  if (ready) {
+    console.log(store.getState());
+  }
   if (!isLoaded(auth))
     return (
       <Wrapper>
@@ -46,19 +52,16 @@ function AuthIsLoaded({ children }) {
 }
 
 const root = document.getElementById("root");
-console.log(store.getState());
 
 ReactDOM.render(
-  <Wrapper>
-    <ReduxProvider store={store}>
-      <ReactReduxFirebaseProvider {...rrfProps}>
-        <BrowserRouter>
-          <AuthIsLoaded>
-            <App />
-          </AuthIsLoaded>
-        </BrowserRouter>
-      </ReactReduxFirebaseProvider>
-    </ReduxProvider>
-  </Wrapper>,
+  <ReduxProvider store={store}>
+    <ReactReduxFirebaseProvider {...rrfProps}>
+      <BrowserRouter>
+        <AuthIsLoaded>
+          <App />
+        </AuthIsLoaded>
+      </BrowserRouter>
+    </ReactReduxFirebaseProvider>
+  </ReduxProvider>,
   root
 );
