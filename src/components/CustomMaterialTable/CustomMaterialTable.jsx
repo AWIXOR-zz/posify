@@ -14,22 +14,21 @@ export default function CustomMaterialTable() {
   // {
   //   products ? console.log(products[userId].product) : console.log("error");
   // }
-  let data;
+  let data = [];
   if (products) {
     products[userId].product.forEach((element) => {
       const { name, price } = element.product;
-      data = {
-        data: [
-          {
-            name: name,
-            price: (Math.round(price * 100) / 100).toFixed(2),
-            invetory: price !== 0 ? "In stock" : "Out of stock",
-            details: 19,
-          },
-        ],
+      console.log(element);
+
+      let item = {
+        name: name,
+        price: (Math.round(price * 100) / 100).toFixed(2),
+        invetory: price !== 0 ? "In stock" : "Out of stock",
+        details: 19,
       };
+      data.push(item);
     });
-    console.log(data.data);
+    console.log(data);
   }
 
   const [state, setState] = React.useState({
@@ -59,7 +58,8 @@ export default function CustomMaterialTable() {
   return (
     <MaterialTable
       columns={state.columns}
-      data={data}
+      isLoading={data.length === 0}
+      data={data ? data : []}
       icons={{
         Check: () => <Check style={{ color: "green" }} />,
         Edit: () => <Edit color="primary" />,
