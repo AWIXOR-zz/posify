@@ -92,5 +92,6 @@ export default {
   ],
   cart: {
     items: [],
+    totalToPay: 0,
   },
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Grid, Icon, Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import SalesTable from "../../components/SalesTable/SalesTable";
@@ -33,6 +34,8 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 function Sales() {
+  const totalToPay = useSelector((state) => state.cart.totalToPay);
+
   const classes = useStyles();
 
   return (
@@ -51,7 +54,8 @@ function Sales() {
               align="center"
               style={{ fontWeight: 200, marginBottom: "20px" }}
             >
-              {(Math.round(1240 * 100) / 100).toFixed(2)} <small>MAD</small>
+              {(Math.round(totalToPay * 100) / 100).toFixed(2)}{" "}
+              <small>MAD</small>
             </Typography>
             <Button
               variant="contained"

@@ -9,14 +9,17 @@ const cartReducer = (state = initialState.cart, { type, payload, id }) => {
         const index = draft.items.findIndex(
           (item) => item.id === payload.tableData.id
         );
-        if (index !== -1) draft.items[index].Qte += payload.Qte;
-        else {
+        if (index !== -1) {
+          draft.items[index].Qte += payload.Qte;
+          draft.totalToPay = calculateTotal(draft);
+        } else {
           draft.items.push({
             id: payload.tableData.id,
             name: payload.name,
             price: payload.price,
             Qte: payload.Qte,
           });
+          draft.totalToPay = calculateTotal(draft);
         }
       });
     case actions.REMOVES_FROM_CART:
@@ -27,5 +30,12 @@ const cartReducer = (state = initialState.cart, { type, payload, id }) => {
     default:
       return state;
   }
+};
+const calculateTotal = (state) => {
+  return state.items.reduce(
+    (accumalatedQuantity, cartItem) =>
+      accumalatedQuantity + cartItem.Qte * cartItem.price,
+    0
+  );
 };
 export default cartReducer;
