@@ -5,11 +5,12 @@ import { firestoreReducer } from "redux-firestore";
 import authReducer from "./authReducer";
 import productsReducer from "./productsReducer";
 import categoryReducer from "./categoryReducer";
-
+import cartReducer from "./cartReducer";
 const rootReducer = combineReducers({
   auth: authReducer,
   product: productsReducer,
   category: categoryReducer,
+  cart: cartReducer,
   firebase: firebaseReducer,
   firestore: firestoreReducer,
 });

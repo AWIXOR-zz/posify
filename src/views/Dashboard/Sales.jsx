@@ -12,7 +12,7 @@ import CardIcon from "../../components/Card/CardIcon";
 import Table from "../../components/Table/Table";
 import SalesItems from "../../components/SalesItems/SalesItems";
 import CustomMaterialTable from "../../components/CustomMaterialTable/CustomMaterialTable";
-
+import CartItem from "../../components/CartItem/CartItem";
 const styles = {
   cardTitle: {
     color: "#FFF",
@@ -41,6 +41,7 @@ function Sales() {
         <Card>
           <CardHeader color="primary" className={classes.stats} icon>
             <CardIcon>
+              <CartItem />
               <h3 className={classes.cardTitle}>TOTAL TO PAY</h3>
             </CardIcon>
           </CardHeader>

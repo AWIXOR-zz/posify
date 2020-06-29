@@ -90,4 +90,11 @@ export default {
       totaleItems: 5,
     },
   ],
+  cart: {
+    items: [
+      { id: 1, name: "dsjfsjdfsjdf", Qte: 12 },
+      { id: 2, name: "dsjfsjdfsjdf", Qte: 12 },
+      { id: 3, name: "dsjfsjdfsjdf", Qte: 12 },
+    ],
+  },
 };
