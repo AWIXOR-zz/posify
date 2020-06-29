@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Grid, Icon, Button, Typography } from "@material-ui/core";
+import { Icon, Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import SalesTable from "../../components/SalesTable/SalesTable";
+// import SalesTable from "../../components/SalesTable/SalesTable";
 // import PageTitle from "../../components/common/PageTitle";
 import GridItem from "../../components/Grid/GridItem";
 import GridContainer from "../../components/Grid/GridContainer";
@@ -10,8 +10,8 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "../../components/Card/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import CardIcon from "../../components/Card/CardIcon";
-import Table from "../../components/Table/Table";
-import SalesItems from "../../components/SalesItems/SalesItems";
+// import Table from "../../components/Table/Table";
+// import SalesItems from "../../components/SalesItems/SalesItems";
 import CustomMaterialTable from "../../components/CustomMaterialTable/CustomMaterialTable";
 import CartItem from "../../components/CartItem/CartItem";
 const styles = {

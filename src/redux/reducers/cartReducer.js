@@ -24,7 +24,8 @@ const cartReducer = (state = initialState.cart, { type, payload, id }) => {
       });
     case actions.REMOVES_FROM_CART:
       return produce(state, (draft) => {
-        delete draft.items[id - 1];
+        delete draft.items[id];
+        draft.totalToPay = calculateTotal(draft);
       });
 
     default:

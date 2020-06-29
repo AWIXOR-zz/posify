@@ -8,6 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import Icon from "@material-ui/core/Icon";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
+import * as actions from "../../redux/actions/cartActions";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,6 +19,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CartItem = () => {
+  const { removeFromCart } = actions;
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
   const classes = useStyles();
   return (
@@ -36,7 +40,11 @@ const CartItem = () => {
               </ListItemIcon>
               <ListItemText primary={item.name} />
               <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="delete">
+                <IconButton
+                  edge="end"
+                  aria-label="delete"
+                  onClick={() => dispatch(removeFromCart(item.id))}
+                >
                   <Icon style={{ color: "#fff", fontWeight: 100 }}>clear</Icon>
                 </IconButton>
               </ListItemSecondaryAction>

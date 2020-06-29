@@ -15,8 +15,8 @@ export default function CustomMaterialTable() {
   const [qte, setQte] = React.useState(1);
   const products = useSelector((state) => state.firestore.data.products);
   const userId = useSelector((state) => state.firebase.auth.uid);
-  const requesting = useSelector((state) => state.firestore.status.requesting);
-  const requested = useSelector((state) => state.firestore.status.requested);
+  // const requesting = useSelector((state) => state.firestore.status.requesting);
+  // const requested = useSelector((state) => state.firestore.status.requested);
 
   let data = [];
   if (products) {
