@@ -91,10 +91,6 @@ export default {
     },
   ],
   cart: {
-    items: [
-      { id: 1, name: "dsjfsjdfsjdf", Qte: 12 },
-      { id: 2, name: "dsjfsjdfsjdf", Qte: 12 },
-      { id: 3, name: "dsjfsjdfsjdf", Qte: 12 },
-    ],
+    items: [],
   },
 };

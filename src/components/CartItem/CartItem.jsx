@@ -22,24 +22,29 @@ const CartItem = () => {
   const classes = useStyles();
   return (
     <div>
-      <List component="nav" aria-label="main mailbox folders">
-        {cartItems.map((item, idx) => (
-          <ListItem key={idx}>
-            <ListItemIcon color="inherit">
-              <Typography variant="h6" className={classes.fontWeight}>
-                {item.Qte} x
-              </Typography>
-            </ListItemIcon>
-            <ListItemText primary={item.name} />
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete">
-                <Icon style={{ color: "#fff", fontWeight: 100 }}>clear</Icon>
-              </IconButton>
-            </ListItemSecondaryAction>
-            <Divider />
-          </ListItem>
-        ))}
-      </List>
+      {cartItems.length === 0 ? (
+        <Typography align="center" className={classes.fontWeight}>
+          no items yet
+        </Typography>
+      ) : (
+        <List component="nav" aria-label="main mailbox folders">
+          {cartItems.map((item, idx) => (
+            <ListItem key={idx}>
+              <ListItemIcon color="inherit">
+                <Typography variant="h6" className={classes.fontWeight}>
+                  {item.Qte} x
+                </Typography>
+              </ListItemIcon>
+              <ListItemText primary={item.name} />
+              <ListItemSecondaryAction>
+                <IconButton edge="end" aria-label="delete">
+                  <Icon style={{ color: "#fff", fontWeight: 100 }}>clear</Icon>
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
+        </List>
+      )}
     </div>
   );
 };

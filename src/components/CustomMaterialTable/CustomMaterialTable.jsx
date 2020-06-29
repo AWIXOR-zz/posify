@@ -25,9 +25,9 @@ export default function CustomMaterialTable() {
 
       let item = {
         name: name,
-        price: (Math.round(price * 100) / 100).toFixed(2),
+        price: price,
         invetory: price !== 0 ? "In stock" : "Out of stock",
-        Qte: qte,
+        Qte: parseInt(qte),
         details: 19,
       };
       data.push(item);
@@ -37,7 +37,7 @@ export default function CustomMaterialTable() {
   const [state, setState] = React.useState({
     columns: [
       { title: "Name", field: "name" },
-      { title: "Price", field: "price", type: "numeric" },
+      { title: "Price", field: "price", type: "currency" },
 
       {
         title: "Invetory",
@@ -49,6 +49,7 @@ export default function CustomMaterialTable() {
       {
         field: "Qte",
         title: "Qte",
+        type: "numeric",
         render: (rowData) => (
           <TextField
             type="number"
