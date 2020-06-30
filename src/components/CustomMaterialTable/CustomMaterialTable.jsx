@@ -100,10 +100,12 @@ export default function CustomMaterialTable() {
           }),
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve) => {
+            console.log(newData);
+
             setTimeout(() => {
               resolve();
               if (oldData) {
-                dispatch(editProduct(oldData.id, newData));
+                dispatch(editProduct(newData));
               }
             }, 600);
           }),

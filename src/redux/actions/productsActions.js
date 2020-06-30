@@ -39,7 +39,7 @@ export const addProduct = (data) => async (
 };
 
 // Edit product
-export const editProduct = (id, data) => async (
+export const editProduct = (data) => async (
   dispatch,
   getState,
   { getFirestore }
@@ -50,11 +50,13 @@ export const editProduct = (id, data) => async (
   try {
     const res = await firestore.collection("products").doc(userId).get();
     const products = res.data().product;
-    const index = products.findIndex((item) => item.id === id);
-    products[index].product = data.product;
+
+    const index = products.findIndex((item) => item.id === data.id);
+
+    products[index].product = data;
 
     await firestore.collection("products").doc(userId).update({
-      products,
+      product: products,
     });
     dispatch({ type: actions.ADD_PRODUCT_SUCCESS });
     return true;
@@ -74,10 +76,10 @@ export const deleteProduct = (id) => async (
   dispatch({ type: actions.DELETE_PRODUCT_START });
   try {
     const res = await firestore.collection("products").doc(userId).get();
-    const previousProducts = res.data().products;
+    const previousProducts = res.data().product;
     const newProducts = previousProducts.filter((product) => product.id !== id);
     await firestore.collection("products").doc(userId).update({
-      products: newProducts,
+      product: newProducts,
     });
     dispatch({ type: actions.DELETE_PRODUCT_SUCCESS });
   } catch (err) {
