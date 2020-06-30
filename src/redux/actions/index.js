@@ -8,3 +8,5 @@ export {
   deleteUser,
   clean,
 } from "./authActions";
+
+export { addProduct, editProduct, deleteProduct } from "./productsActions";

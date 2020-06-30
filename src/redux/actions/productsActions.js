@@ -1,5 +1,6 @@
 import * as actions from "./actionTypes";
-// Add a product
+
+// Add product
 export const addProduct = (data) => async (
   dispatch,
   getState,
@@ -34,5 +35,52 @@ export const addProduct = (data) => async (
     return true;
   } catch (err) {
     dispatch({ type: actions.ADD_PRODUCT_FAIL, payload: err.message });
+  }
+};
+
+// Edit product
+export const editProduct = (id, data) => async (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
+  const firestore = getFirestore();
+  const userId = getState().firebase.auth.uid;
+  dispatch({ type: actions.ADD_PRODUCT_START });
+  try {
+    const res = await firestore.collection("products").doc(userId).get();
+    const products = res.data().product;
+    const index = products.findIndex((item) => item.id === id);
+    products[index].product = data.product;
+
+    await firestore.collection("products").doc(userId).update({
+      products,
+    });
+    dispatch({ type: actions.ADD_PRODUCT_SUCCESS });
+    return true;
+  } catch (err) {
+    dispatch({ type: actions.ADD_PRODUCT_FAIL, payload: err.message });
+  }
+};
+
+// Delete product
+export const deleteProduct = (id) => async (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
+  const firestore = getFirestore();
+  const userId = getState().firebase.auth.uid;
+  dispatch({ type: actions.DELETE_PRODUCT_START });
+  try {
+    const res = await firestore.collection("products").doc(userId).get();
+    const previousProducts = res.data().products;
+    const newProducts = previousProducts.filter((product) => product.id !== id);
+    await firestore.collection("products").doc(userId).update({
+      products: newProducts,
+    });
+    dispatch({ type: actions.DELETE_PRODUCT_SUCCESS });
+  } catch (err) {
+    dispatch({ type: actions.DELETE_PRODUCT_FAIL, payload: err.message });
   }
 };

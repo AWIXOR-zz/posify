@@ -7,10 +7,13 @@ import Delete from "@material-ui/icons/Delete";
 import Clear from "@material-ui/icons/Clear";
 import TextField from "@material-ui/core/TextField";
 
-import * as actions from "../../redux/actions/cartActions";
+import * as cartActions from "../../redux/actions/cartActions";
+import * as productActions from "../../redux/actions/productsActions";
 
 export default function CustomMaterialTable() {
-  const { addToCart } = actions;
+  const { addProduct, editProduct, deleteProduct } = productActions;
+  const { addToCart } = cartActions;
+
   const dispatch = useDispatch();
   const [qte, setQte] = React.useState(1);
   const products = useSelector((state) => state.firestore.data.products);
@@ -24,6 +27,7 @@ export default function CustomMaterialTable() {
       const { name, price } = element.product;
 
       let item = {
+        id: element.id,
         name: name,
         price: price,
         invetory: price !== 0 ? "In stock" : "Out of stock",
@@ -91,11 +95,7 @@ export default function CustomMaterialTable() {
           new Promise((resolve) => {
             setTimeout(() => {
               resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
+              dispatch(addProduct(newData));
             }, 600);
           }),
         onRowUpdate: (newData, oldData) =>
@@ -103,11 +103,7 @@ export default function CustomMaterialTable() {
             setTimeout(() => {
               resolve();
               if (oldData) {
-                setState((prevState) => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
+                dispatch(editProduct(oldData.id, newData));
               }
             }, 600);
           }),
@@ -115,11 +111,7 @@ export default function CustomMaterialTable() {
           new Promise((resolve) => {
             setTimeout(() => {
               resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
+              dispatch(deleteProduct(oldData.id));
             }, 600);
           }),
       }}
