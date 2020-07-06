@@ -16,7 +16,9 @@ import {
 } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import DeleteIcon from "@material-ui/icons/Delete";
-
+import GridItem from "../Grid/GridItem";
+// import Table from "../../Table/Table";
+import GridContainer from "../Grid/GridContainer";
 import { useStyles } from "../../components/assits/styles";
 import PageTitle from "../common/PageTitle";
 
@@ -42,15 +44,15 @@ function EditItem() {
     setOpen(true);
   };
   return (
-    <Grid>
-      <Grid item>
+    <GridContainer>
+      <GridItem xs={12} sm={12} md={4}>
         <PageTitle
           title="Edit Product"
           subtitle="DASHBOARD"
           className="text-sm-left"
         />
-      </Grid>
-      <Grid item>
+      </GridItem>
+      <GridItem xs={12} sm={12} md={4}>
         <Paper className={classes.salesPaper}>
           <Card className={classes.cardPadding}>
             <CardContent>
@@ -61,7 +63,7 @@ function EditItem() {
                 alignItems="center"
                 justify="center"
               >
-                <Grid item xs={8}>
+                <GridItem xs={12} sm={12} md={4}>
                   <TextField
                     fullWidth
                     id="outlined-error-helper-text"
@@ -71,8 +73,8 @@ function EditItem() {
                     onChange={(e) => setProduct(e.target.value)}
                     required
                   />
-                </Grid>
-                <Grid item xs={8}>
+                </GridItem>
+                <GridItem xs={12} sm={12} md={4}>
                   <FormControl className={classes.formControl}>
                     <Select
                       displayEmpty={true}
@@ -93,8 +95,8 @@ function EditItem() {
                       <MenuItem value={30}>Thirty</MenuItem>
                     </Select>
                   </FormControl>
-                </Grid>
-                <Grid item xs={8}>
+                </GridItem>
+                <GridItem xs={12} sm={12} md={4}>
                   <FormControl component="fieldset">
                     <FormLabel component="legend">Sold by</FormLabel>
                     <RadioGroup
@@ -115,8 +117,8 @@ function EditItem() {
                       />
                     </RadioGroup>
                   </FormControl>
-                </Grid>
-                <Grid item xs={8}>
+                </GridItem>
+                <GridItem xs={12} sm={12} md={4}>
                   <TextField
                     fullWidth
                     label="Price"
@@ -126,7 +128,7 @@ function EditItem() {
                     onChange={(e) => setPrice(e.target.value)}
                     required
                   />
-                </Grid>
+                </GridItem>
                 <Grid item xs={8} className={classes.textCenter}>
                   <Button
                     margin="dense"
@@ -152,8 +154,8 @@ function EditItem() {
             </CardContent>
           </Card>
         </Paper>
-      </Grid>
-    </Grid>
+      </GridItem>
+    </GridContainer>
   );
 }
 

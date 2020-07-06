@@ -2,16 +2,15 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Icon, Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-// import SalesTable from "../../components/SalesTable/SalesTable";
-// import PageTitle from "../../components/common/PageTitle";
+
 import GridItem from "../../components/Grid/GridItem";
 import GridContainer from "../../components/Grid/GridContainer";
 import Card from "@material-ui/core/Card";
 import CardHeader from "../../components/Card/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import CardIcon from "../../components/Card/CardIcon";
-// import Table from "../../components/Table/Table";
-// import SalesItems from "../../components/SalesItems/SalesItems";
+import TextField from "@material-ui/core/TextField";
+
 import CustomMaterialTable from "../../components/CustomMaterialTable/CustomMaterialTable";
 import CartItem from "../../components/CartItem/CartItem";
 const styles = {
@@ -34,8 +33,53 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 function Sales() {
-  const totalToPay = useSelector((state) => state.cart.totalToPay);
+  const [qte, setQte] = React.useState(1);
 
+  const totalToPay = useSelector((state) => state.cart.totalToPay);
+  const products = useSelector((state) => state.firestore.data.products);
+  const userId = useSelector((state) => state.firebase.auth.uid);
+
+  let data = [];
+  if (products) {
+    products[userId].product.forEach((element) => {
+      const { name, price } = element.product;
+
+      let item = {
+        id: element.id,
+        name: name,
+        price: price,
+        invetory: price !== 0 ? "In stock" : "Out of stock",
+        Qte: parseInt(qte),
+        details: 19,
+      };
+      data.push(item);
+    });
+  }
+  const columns = [
+    { title: "Name", field: "name" },
+    { title: "Price", field: "price", type: "currency" },
+
+    {
+      title: "Invetory",
+      field: "invetory",
+      cellStyle: (rowData) => ({
+        color: rowData === 0 ? "red" : "green",
+      }),
+    },
+    {
+      field: "Qte",
+      title: "Qte",
+      type: "numeric",
+      render: (rowData) => (
+        <TextField
+          type="number"
+          defaultValue={1}
+          inputProps={{ min: 1 }}
+          onChange={(event) => setQte(event.target.value)}
+        />
+      ),
+    },
+  ];
   const classes = useStyles();
 
   return (
@@ -70,7 +114,7 @@ function Sales() {
         </Card>
       </GridItem>
       <GridItem xs={12} sm={12} md={8}>
-        <CustomMaterialTable />
+        <CustomMaterialTable columns={columns} data={data} />
       </GridItem>
     </GridContainer>
   );

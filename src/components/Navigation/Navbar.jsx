@@ -28,7 +28,7 @@ const Navbar = ({ handleDrawerOpen, open }) => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap>
-          Mini variant drawer
+          Welcome to our app!
         </Typography>
         <UserActions />
       </Toolbar>
