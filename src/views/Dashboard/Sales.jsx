@@ -62,6 +62,7 @@ function Sales() {
     {
       title: "Invetory",
       field: "invetory",
+      editable: "never",
       cellStyle: (rowData) => ({
         color: rowData === 0 ? "red" : "green",
       }),
@@ -69,6 +70,7 @@ function Sales() {
     {
       field: "Qte",
       title: "Qte",
+      editable: "never",
       type: "numeric",
       render: (rowData) => (
         <TextField

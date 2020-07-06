@@ -12,14 +12,15 @@ function AllItems({ history }) {
   let data = [];
   if (products) {
     products[userId].product.forEach((element) => {
-      const { name, price } = element.product;
+      const { name, price, soldBy, details } = element.product;
 
       let item = {
         id: element.id,
         name: name,
         price: price,
+        soldBy: soldBy,
         invetory: price !== 0 ? "In stock" : "Out of stock",
-        details: 19,
+        details: details,
       };
       data.push(item);
     });
@@ -27,10 +28,16 @@ function AllItems({ history }) {
   const columns = [
     { title: "Name", field: "name" },
     { title: "Price", field: "price", type: "currency" },
+    {
+      title: "Sold By",
+      field: "soldBy",
+      lookup: { each: "Each", weight: "Weight" },
+    },
 
     {
       title: "Invetory",
       field: "invetory",
+      editable: "never",
       cellStyle: (rowData) => ({
         color: rowData === 0 ? "red" : "green",
       }),

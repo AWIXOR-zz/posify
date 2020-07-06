@@ -48,6 +48,7 @@ export default function CustomMaterialTable({ data, columns, haveCart }) {
         actionsColumnIndex: -1,
       }}
       editable={{
+        isEditHidden: (rowData) => rowData.Invetory === "x",
         onRowAdd: (newData) =>
           new Promise((resolve) => {
             setTimeout(() => {
