@@ -9,7 +9,7 @@ import Clear from "@material-ui/icons/Clear";
 import * as cartActions from "../../redux/actions/cartActions";
 import * as productActions from "../../redux/actions/productsActions";
 
-export default function CustomMaterialTable({ data, columns }) {
+export default function CustomMaterialTable({ data, columns, haveCart }) {
   const { addProduct, editProduct, deleteProduct } = productActions;
   const { addToCart } = cartActions;
 
@@ -30,15 +30,19 @@ export default function CustomMaterialTable({ data, columns }) {
         Delete: () => <Delete color="secondary" />,
         Clear: () => <Clear color="secondary" />,
       }}
-      actions={[
-        {
-          icon: "add_shopping_cart",
-          tooltip: "Add to cart",
-          onClick: (event, rowData) => {
-            dispatch(addToCart(rowData));
-          },
-        },
-      ]}
+      actions={
+        haveCart
+          ? [
+              {
+                icon: "add_shopping_cart",
+                tooltip: "Add to cart",
+                onClick: (event, rowData) => {
+                  dispatch(addToCart(rowData));
+                },
+              },
+            ]
+          : null
+      }
       options={{
         showTitle: false,
         actionsColumnIndex: -1,

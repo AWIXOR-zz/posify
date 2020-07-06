@@ -17,7 +17,6 @@ import {
 import SaveIcon from "@material-ui/icons/Save";
 import DeleteIcon from "@material-ui/icons/Delete";
 import GridItem from "../Grid/GridItem";
-// import Table from "../../Table/Table";
 import GridContainer from "../Grid/GridContainer";
 import { useStyles } from "../../components/assits/styles";
 import PageTitle from "../common/PageTitle";

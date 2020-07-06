@@ -114,7 +114,7 @@ function Sales() {
         </Card>
       </GridItem>
       <GridItem xs={12} sm={12} md={8}>
-        <CustomMaterialTable columns={columns} data={data} />
+        <CustomMaterialTable columns={columns} data={data} haveCart />
       </GridItem>
     </GridContainer>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import DisplayItems from "../DisplayItems/DisplayItems";
 import { useSelector } from "react-redux";
 import PageTitle from "../common/PageTitle";
 import GridItem from "../Grid/GridItem";
@@ -8,7 +7,6 @@ import GridContainer from "../Grid/GridContainer";
 import CustomMaterialTable from "../CustomMaterialTable/CustomMaterialTable";
 function AllItems({ history }) {
   const products = useSelector((state) => state.firestore.data.products);
-
   const userId = useSelector((state) => state.firebase.auth.uid);
 
   let data = [];
@@ -49,7 +47,6 @@ function AllItems({ history }) {
         <PageTitle title="All Products" subtitle="DASHBOARD" />
       </GridItem>
       <GridItem xs={12} sm={12} md={10}>
-        {/*<DisplayItems items={products} />*/}
         <CustomMaterialTable data={data} columns={columns} />
       </GridItem>
     </GridContainer>
