@@ -9,6 +9,7 @@ import SignIn from "./views/SignIn/SignIn";
 import SignUp from "./views/SignUp/SignUp";
 import Logout from "./views/Logout/Logout";
 import Sales from "./views/Dashboard/Sales";
+import Receipts from "./views/Dashboard/Receipts";
 import Items from "./views/Dashboard/Items";
 import AllItems from "./components/AllItems/AllItems";
 import AllCategories from "./components/AllCategories/AllCategories";
@@ -28,6 +29,11 @@ export default {
       path: "/sales",
       layout: DefaultLayout,
       component: Sales,
+    },
+    {
+      path: "/receipts",
+      layout: DefaultLayout,
+      component: Receipts,
     },
     {
       path: "/items",
