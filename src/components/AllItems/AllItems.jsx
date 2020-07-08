@@ -8,14 +8,16 @@ import CustomMaterialTable from "../CustomMaterialTable/CustomMaterialTable";
 function AllItems({ history }) {
   const products = useSelector((state) => state.firestore.data.products);
   const userId = useSelector((state) => state.firebase.auth.uid);
+  const requested = useSelector((state) => state.firestore.status.requested);
+  const dataLoaded = Object.values(requested).some((a) => a === true);
 
   let data = [];
-  if (products) {
-    products[userId].product.forEach((element) => {
-      const { name, price, soldBy, details } = element.product;
+  if (dataLoaded) {
+    products[userId].products.forEach((element) => {
+      const { name, price, soldBy, details } = element;
 
       let item = {
-        id: element.id,
+        // id: element.id,
         name: name,
         price: price,
         soldBy: soldBy,

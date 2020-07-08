@@ -22,7 +22,7 @@ export default function CustomMaterialTable({ data, columns, haveCart }) {
   return (
     <MaterialTable
       columns={state.columns}
-      isLoading={data.length === 0}
+      // isLoading={data.length === 0}
       data={data ? data : []}
       icons={{
         Check: () => <Check style={{ color: "green" }} />,
