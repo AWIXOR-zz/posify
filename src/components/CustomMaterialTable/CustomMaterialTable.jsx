@@ -8,20 +8,23 @@ import Clear from "@material-ui/icons/Clear";
 
 import * as cartActions from "../../redux/actions/cartActions";
 import * as productActions from "../../redux/actions/productsActions";
+import * as categoryActions from "../../redux/actions/categoryActions";
 
-export default function CustomMaterialTable({ data, columns, haveCart }) {
+export default function CustomMaterialTable({
+  data,
+  columns,
+  haveCart,
+  isCategory,
+}) {
   const { addProduct, editProduct, deleteProduct } = productActions;
+  const { addCategory, editCategory, deleteCategory } = categoryActions;
   const { addToCart } = cartActions;
 
   const dispatch = useDispatch();
 
-  const [state] = React.useState({
-    columns: columns,
-  });
-
   return (
     <MaterialTable
-      columns={state.columns}
+      columns={columns}
       // isLoading={data.length === 0}
       data={data ? data : []}
       icons={{
@@ -53,7 +56,7 @@ export default function CustomMaterialTable({ data, columns, haveCart }) {
           new Promise((resolve) => {
             setTimeout(() => {
               resolve();
-              dispatch(addProduct(newData));
+              dispatch(isCategory ? addCategory(newData) : addProduct(newData));
             }, 600);
           }),
         onRowUpdate: (newData, oldData) =>
@@ -61,7 +64,9 @@ export default function CustomMaterialTable({ data, columns, haveCart }) {
             setTimeout(() => {
               resolve();
               if (oldData) {
-                dispatch(editProduct(newData));
+                dispatch(
+                  isCategory ? editCategory(newData) : editProduct(newData)
+                );
               }
             }, 600);
           }),
@@ -69,7 +74,11 @@ export default function CustomMaterialTable({ data, columns, haveCart }) {
           new Promise((resolve) => {
             setTimeout(() => {
               resolve();
-              dispatch(deleteProduct(oldData.id));
+              dispatch(
+                isCategory
+                  ? deleteCategory(oldData.id)
+                  : deleteProduct(oldData.id)
+              );
             }, 600);
           }),
       }}

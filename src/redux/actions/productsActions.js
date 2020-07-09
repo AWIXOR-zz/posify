@@ -11,13 +11,14 @@ export const addProduct = (data) => async (
   dispatch({ type: actions.ADD_PRODUCT_START });
   try {
     const res = await firestore.collection("products").doc(userId).get();
-    const { name, price, details, soldBy } = data;
+    const { name, price, category, details, soldBy } = data;
 
     const newProduct = {
       id: new Date().valueOf(),
       name: name,
       price: price,
       soldBy: soldBy,
+      category: category,
       details: details,
     };
     console.log(newProduct);
@@ -59,12 +60,13 @@ export const editProduct = (data) => async (
     const products = res.data().products;
 
     const index = products.findIndex((item) => item.id === data.id);
-    const { name, price, details, soldBy } = data;
+    const { name, price, category, details, soldBy } = data;
     products[index] = {
       id: products[index].id,
       name: name,
       price: price,
       soldBy: soldBy,
+      category: category,
       details: details,
     };
 

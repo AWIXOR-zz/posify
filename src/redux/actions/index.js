@@ -10,3 +10,4 @@ export {
 } from "./authActions";
 
 export { addProduct, editProduct, deleteProduct } from "./productsActions";
+export { addCategory, editCategory, deleteCategory } from "./categoryActions";

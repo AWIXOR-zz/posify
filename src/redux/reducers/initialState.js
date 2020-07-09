@@ -28,23 +28,15 @@ export default {
     },
   },
 
-  categories: [
-    {
-      id: 1,
-      name: "category1",
-      totaleItems: 10,
+  category: {
+    error: null,
+    loading: false,
+    deleteCategory: {
+      error: null,
+      loading: false,
     },
-    {
-      id: 2,
-      name: "category2",
-      totaleItems: 20,
-    },
-    {
-      id: 3,
-      name: "category3",
-      totaleItems: 5,
-    },
-  ],
+  },
+
   cart: {
     items: [],
     totalToPay: 0,

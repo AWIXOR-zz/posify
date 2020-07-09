@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PageTitle from "../common/PageTitle";
 import GridItem from "../Grid/GridItem";
@@ -14,13 +13,14 @@ function AllItems({ history }) {
   let data = [];
   if (dataLoaded) {
     products[userId].products.forEach((element) => {
-      const { name, price, soldBy, details } = element;
+      const { id, name, price, soldBy, category, details } = element;
 
       let item = {
-        id: element.id,
+        id: id,
         name: name,
         price: price,
         soldBy: soldBy,
+        category: category,
         invetory: price !== 0 ? "In stock" : "Out of stock",
         details: details,
       };
@@ -35,6 +35,7 @@ function AllItems({ history }) {
       field: "soldBy",
       lookup: { each: "Each", weight: "Weight" },
     },
+    { title: "Category", field: "category" },
 
     {
       title: "Invetory",
@@ -62,4 +63,4 @@ function AllItems({ history }) {
   );
 }
 
-export default withRouter(AllItems);
+export default AllItems;
