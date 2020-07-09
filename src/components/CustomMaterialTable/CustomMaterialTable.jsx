@@ -15,7 +15,7 @@ export default function CustomMaterialTable({ data, columns, haveCart }) {
 
   const dispatch = useDispatch();
 
-  const [state, setState] = React.useState({
+  const [state] = React.useState({
     columns: columns,
   });
 
@@ -58,8 +58,6 @@ export default function CustomMaterialTable({ data, columns, haveCart }) {
           }),
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve) => {
-            console.log(newData);
-
             setTimeout(() => {
               resolve();
               if (oldData) {

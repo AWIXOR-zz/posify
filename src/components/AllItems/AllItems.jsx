@@ -17,7 +17,7 @@ function AllItems({ history }) {
       const { name, price, soldBy, details } = element;
 
       let item = {
-        // id: element.id,
+        id: element.id,
         name: name,
         price: price,
         soldBy: soldBy,

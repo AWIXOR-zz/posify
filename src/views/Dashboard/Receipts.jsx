@@ -7,11 +7,7 @@ import GridContainer from "../../components/Grid/GridContainer";
 import Card from "@material-ui/core/Card";
 import CardHeader from "../../components/Card/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
-import {
-  dailySalesChart,
-  monthlySalesChart,
-  completedTasksChart,
-} from "../../variables/charts.js";
+import { dailySalesChart, monthlySalesChart } from "../../variables/charts.js";
 import { Typography } from "@material-ui/core";
 function Receipts() {
   return (

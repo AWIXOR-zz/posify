@@ -11,14 +11,16 @@ export const addProduct = (data) => async (
   dispatch({ type: actions.ADD_PRODUCT_START });
   try {
     const res = await firestore.collection("products").doc(userId).get();
+    const { name, price, details, soldBy } = data;
+
     const newProduct = {
       id: new Date().valueOf(),
-      // product: data,
-      name: data.name,
-      price: data.price,
-      soldBy: data.soldBy,
-      details: data.details,
+      name: name,
+      price: price,
+      soldBy: soldBy,
+      details: details,
     };
+    console.log(newProduct);
 
     if (!res.data()) {
       firestore
@@ -53,14 +55,21 @@ export const editProduct = (data) => async (
   dispatch({ type: actions.ADD_PRODUCT_START });
   try {
     const res = await firestore.collection("products").doc(userId).get();
-    const products = res.data().product;
+
+    const products = res.data().products;
 
     const index = products.findIndex((item) => item.id === data.id);
-
-    products[index].product = data;
+    const { name, price, details, soldBy } = data;
+    products[index] = {
+      id: products[index].id,
+      name: name,
+      price: price,
+      soldBy: soldBy,
+      details: details,
+    };
 
     await firestore.collection("products").doc(userId).update({
-      product: products,
+      products: products,
     });
     dispatch({ type: actions.ADD_PRODUCT_SUCCESS });
     return true;
@@ -80,10 +89,10 @@ export const deleteProduct = (id) => async (
   dispatch({ type: actions.DELETE_PRODUCT_START });
   try {
     const res = await firestore.collection("products").doc(userId).get();
-    const previousProducts = res.data().product;
+    const previousProducts = res.data().products;
     const newProducts = previousProducts.filter((product) => product.id !== id);
     await firestore.collection("products").doc(userId).update({
-      product: newProducts,
+      products: newProducts,
     });
     dispatch({ type: actions.DELETE_PRODUCT_SUCCESS });
   } catch (err) {
