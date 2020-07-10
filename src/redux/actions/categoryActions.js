@@ -13,27 +13,23 @@ export const addCategory = (data) => async (
     const res = await firestore.collection("invetory").doc(userId).get();
     const { name } = data;
 
-    console.log(res.data());
     // count numverOf Items
-    let numberOFitems;
+    let numberOfitems = 0;
+    console.log(res.data().products);
+
     res
       .data()
-      .products.where("category", "==", name)
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          numberOFitems++;
-          console.log(numberOFitems);
-        });
-      })
-      .catch(function (error) {
-        console.log("Error getting documents: ", error);
-      });
+      .products.forEach((product) =>
+        product.category.toUpperCase() === name.toUpperCase()
+          ? numberOfitems++
+          : numberOfitems
+      );
+    console.log(numberOfitems);
 
     const newCategory = {
       id: new Date().valueOf(),
       name,
-      totalItems: numberOFitems,
+      totalItems: numberOfitems,
     };
 
     if (!res.data().categories) {

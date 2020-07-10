@@ -25,7 +25,12 @@ function AllCategories() {
   }
   const columns = [
     { title: "Name", field: "name" },
-    { title: "Total Items", field: "totalItems", type: "numeric" },
+    {
+      title: "Total Items",
+      field: "totalItems",
+      type: "numeric",
+      editable: "never",
+    },
   ];
   return (
     <GridContainer>
