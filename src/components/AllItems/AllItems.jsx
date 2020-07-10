@@ -11,6 +11,8 @@ function AllItems({ history }) {
   const dataLoaded = Object.values(requested).some((a) => a === true);
 
   let data = [];
+  const categoriesList = {};
+
   if (dataLoaded) {
     invetory[userId].products.forEach((element) => {
       const { id, name, price, soldBy, category, details } = element;
@@ -26,7 +28,12 @@ function AllItems({ history }) {
       };
       data.push(item);
     });
+    invetory[userId].categories.forEach((category) => {
+      const catName = category.name;
+      categoriesList[`${catName}`] = catName;
+    });
   }
+
   const columns = [
     { title: "Name", field: "name" },
     { title: "Price", field: "price", type: "currency" },
@@ -35,7 +42,7 @@ function AllItems({ history }) {
       field: "soldBy",
       lookup: { each: "Each", weight: "Weight" },
     },
-    { title: "Category", field: "category" },
+    { title: "Category", field: "category", lookup: categoriesList },
 
     {
       title: "Invetory",
