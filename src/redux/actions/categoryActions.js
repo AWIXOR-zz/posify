@@ -10,25 +10,42 @@ export const addCategory = (data) => async (
   const userId = getState().firebase.auth.uid;
   dispatch({ type: actions.ADD_CATEGORY_START });
   try {
-    const res = await firestore.collection("categories").doc(userId).get();
-    const { name, totalItems } = data;
+    const res = await firestore.collection("invetory").doc(userId).get();
+    const { name } = data;
+
+    console.log(res.data());
+    // count numverOf Items
+    let numberOFitems;
+    res
+      .data()
+      .products.where("category", "==", name)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          numberOFitems++;
+          console.log(numberOFitems);
+        });
+      })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
 
     const newCategory = {
       id: new Date().valueOf(),
       name,
-      totalItems,
+      totalItems: numberOFitems,
     };
 
-    if (!res.data()) {
+    if (!res.data().categories) {
       firestore
-        .collection("categories")
+        .collection("invetory")
         .doc(userId)
-        .set({
+        .update({
           categories: [newCategory],
         });
     } else {
       firestore
-        .collection("categories")
+        .collection("invetory")
         .doc(userId)
         .update({
           categories: [...res.data().categories, newCategory],
@@ -51,7 +68,7 @@ export const editCategory = (data) => async (
   const userId = getState().firebase.auth.uid;
   dispatch({ type: actions.ADD_CATEGORY_START });
   try {
-    const res = await firestore.collection("categories").doc(userId).get();
+    const res = await firestore.collection("invetory").doc(userId).get();
 
     const categories = res.data().categories;
 
@@ -63,7 +80,7 @@ export const editCategory = (data) => async (
       totalItems,
     };
 
-    await firestore.collection("categories").doc(userId).update({
+    await firestore.collection("invetory").doc(userId).update({
       categories: categories,
     });
     dispatch({ type: actions.ADD_CATEGORY_SUCCESS });
@@ -83,12 +100,12 @@ export const deleteCategory = (id) => async (
   const userId = getState().firebase.auth.uid;
   dispatch({ type: actions.DELETE_CATEGORY_START });
   try {
-    const res = await firestore.collection("categories").doc(userId).get();
+    const res = await firestore.collection("invetory").doc(userId).get();
     const previousCategories = res.data().categories;
     const newCategories = previousCategories.filter(
       (category) => category.id !== id
     );
-    await firestore.collection("categories").doc(userId).update({
+    await firestore.collection("invetory").doc(userId).update({
       categories: newCategories,
     });
     dispatch({ type: actions.DELETE_CATEGORY_SUCCESS });

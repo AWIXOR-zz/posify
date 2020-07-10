@@ -10,7 +10,7 @@ export const addProduct = (data) => async (
   const userId = getState().firebase.auth.uid;
   dispatch({ type: actions.ADD_PRODUCT_START });
   try {
-    const res = await firestore.collection("products").doc(userId).get();
+    const res = await firestore.collection("invetory").doc(userId).get();
     const { name, price, category, details, soldBy } = data;
 
     const newProduct = {
@@ -23,16 +23,16 @@ export const addProduct = (data) => async (
     };
     console.log(newProduct);
 
-    if (!res.data()) {
+    if (!res.data().products) {
       firestore
-        .collection("products")
+        .collection("invetory")
         .doc(userId)
-        .set({
+        .update({
           products: [newProduct],
         });
     } else {
       firestore
-        .collection("products")
+        .collection("invetory")
         .doc(userId)
         .update({
           products: [...res.data().products, newProduct],
@@ -55,7 +55,7 @@ export const editProduct = (data) => async (
   const userId = getState().firebase.auth.uid;
   dispatch({ type: actions.ADD_PRODUCT_START });
   try {
-    const res = await firestore.collection("products").doc(userId).get();
+    const res = await firestore.collection("invetory").doc(userId).get();
 
     const products = res.data().products;
 
@@ -70,7 +70,7 @@ export const editProduct = (data) => async (
       details: details,
     };
 
-    await firestore.collection("products").doc(userId).update({
+    await firestore.collection("invetory").doc(userId).update({
       products: products,
     });
     dispatch({ type: actions.ADD_PRODUCT_SUCCESS });
@@ -90,10 +90,10 @@ export const deleteProduct = (id) => async (
   const userId = getState().firebase.auth.uid;
   dispatch({ type: actions.DELETE_PRODUCT_START });
   try {
-    const res = await firestore.collection("products").doc(userId).get();
+    const res = await firestore.collection("invetory").doc(userId).get();
     const previousProducts = res.data().products;
     const newProducts = previousProducts.filter((product) => product.id !== id);
-    await firestore.collection("products").doc(userId).update({
+    await firestore.collection("invetory").doc(userId).update({
       products: newProducts,
     });
     dispatch({ type: actions.DELETE_PRODUCT_SUCCESS });

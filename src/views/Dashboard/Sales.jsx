@@ -36,14 +36,14 @@ function Sales() {
   const [qte, setQte] = React.useState(1);
 
   const totalToPay = useSelector((state) => state.cart.totalToPay);
-  const products = useSelector((state) => state.firestore.data.products);
+  const invetory = useSelector((state) => state.firestore.data.invetory);
   const userId = useSelector((state) => state.firebase.auth.uid);
   const requested = useSelector((state) => state.firestore.status.requested);
   const dataLoaded = Object.values(requested).some((a) => a === true);
 
   let data = [];
   if (dataLoaded) {
-    products[userId].products.forEach((element) => {
+    invetory[userId].products.forEach((element) => {
       const { name, price } = element;
 
       let item = {

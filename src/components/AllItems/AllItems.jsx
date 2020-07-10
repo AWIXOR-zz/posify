@@ -5,14 +5,14 @@ import GridItem from "../Grid/GridItem";
 import GridContainer from "../Grid/GridContainer";
 import CustomMaterialTable from "../CustomMaterialTable/CustomMaterialTable";
 function AllItems({ history }) {
-  const products = useSelector((state) => state.firestore.data.products);
+  const invetory = useSelector((state) => state.firestore.data.invetory);
   const userId = useSelector((state) => state.firebase.auth.uid);
   const requested = useSelector((state) => state.firestore.status.requested);
   const dataLoaded = Object.values(requested).some((a) => a === true);
 
   let data = [];
   if (dataLoaded) {
-    products[userId].products.forEach((element) => {
+    invetory[userId].products.forEach((element) => {
       const { id, name, price, soldBy, category, details } = element;
 
       let item = {

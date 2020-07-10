@@ -13,7 +13,7 @@ function App() {
 
   useFirestoreConnect([
     {
-      collection: "products",
+      collection: "invetory",
       doc: userId,
     },
   ]);
