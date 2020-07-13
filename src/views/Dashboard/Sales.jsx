@@ -36,27 +36,24 @@ function Sales() {
   const [qte, setQte] = React.useState(1);
 
   const totalToPay = useSelector((state) => state.cart.totalToPay);
-  const invetory = useSelector((state) => state.firestore.data.invetory);
-  const userId = useSelector((state) => state.firebase.auth.uid);
-  const requested = useSelector((state) => state.firestore.status.requested);
-  const dataLoaded = Object.values(requested).some((a) => a === true);
+  const products = useSelector((state) => state.product.items);
 
   let data = [];
-  if (dataLoaded) {
-    invetory[userId].products.forEach((element) => {
-      const { name, price } = element;
 
-      let item = {
-        // id: element.id,
-        name: name,
-        price: price,
-        invetory: price !== 0 ? "In stock" : "Out of stock",
-        Qte: parseInt(qte),
-        details: 19,
-      };
-      data.push(item);
-    });
-  }
+  products.forEach((element) => {
+    const { id, name, price } = element;
+
+    let item = {
+      id: id,
+      name: name,
+      price: price,
+      invetory: price !== 0 ? "In stock" : "Out of stock",
+      Qte: parseInt(qte),
+      details: 19,
+    };
+    data.push(item);
+  });
+
   const columns = [
     { title: "Name", field: "name" },
     { title: "Price", field: "price", type: "currency" },

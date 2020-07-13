@@ -15,6 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   fontWeight: {
     fontWeight: 200,
+    color: "#E2E2E2",
   },
 }));
 

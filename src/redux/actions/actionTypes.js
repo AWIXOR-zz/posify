@@ -5,6 +5,9 @@ export const AUTH_FAIL = "AUTH_FAIL";
 
 export const CLEAN_UP = "CLEAN_UP";
 
+//Set products
+export const SET_PRODUCTS = "SET_PRODUCTS";
+
 //Add Product
 export const ADD_PRODUCT_START = "ADD_PRODUCT_START";
 export const ADD_PRODUCT_SUCCESS = "ADD_PRODUCT_SUCCESS";
@@ -14,6 +17,9 @@ export const ADD_PRODUCT_FAIL = "ADD_PRODUCT_FAIL";
 export const DELETE_PRODUCT_START = "DELETE_PRODUCT_START";
 export const DELETE_PRODUCT_SUCCESS = "DELETE_PRODUCT_SUCCESS";
 export const DELETE_PRODUCT_FAIL = "DELETE_PRODUCT_FAIL";
+
+//Set Categories
+export const SET_CATEGORIES = "SET_CATEGORIES";
 
 //Add Category
 export const ADD_CATEGORY_START = "ADD_CATEGORY_START";

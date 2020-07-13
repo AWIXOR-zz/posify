@@ -5,34 +5,30 @@ import GridItem from "../Grid/GridItem";
 import GridContainer from "../Grid/GridContainer";
 import CustomMaterialTable from "../CustomMaterialTable/CustomMaterialTable";
 function AllItems({ history }) {
-  const invetory = useSelector((state) => state.firestore.data.invetory);
-  const userId = useSelector((state) => state.firebase.auth.uid);
-  const requested = useSelector((state) => state.firestore.status.requested);
-  const dataLoaded = Object.values(requested).some((a) => a === true);
+  const products = useSelector((state) => state.product.items);
+  const categories = useSelector((state) => state.category.items);
 
   let data = [];
   const categoriesList = {};
 
-  if (dataLoaded) {
-    invetory[userId].products.forEach((element) => {
-      const { id, name, price, soldBy, category, details } = element;
+  products.forEach((element) => {
+    const { id, name, price, soldBy, category, details } = element;
 
-      let item = {
-        id: id,
-        name: name,
-        price: price,
-        soldBy: soldBy,
-        category: category,
-        invetory: price !== 0 ? "In stock" : "Out of stock",
-        details: details,
-      };
-      data.push(item);
-    });
-    invetory[userId].categories.forEach((category) => {
-      const catName = category.name;
-      categoriesList[`${catName}`] = catName;
-    });
-  }
+    let item = {
+      id: id,
+      name: name,
+      price: price,
+      soldBy: soldBy,
+      category: category,
+      invetory: price !== 0 ? "In stock" : "Out of stock",
+      details: details,
+    };
+    data.push(item);
+  });
+  categories.forEach((category) => {
+    const catName = category.name;
+    categoriesList[`${catName}`] = catName;
+  });
 
   const columns = [
     { title: "Name", field: "name" },

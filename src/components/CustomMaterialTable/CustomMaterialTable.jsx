@@ -41,6 +41,7 @@ export default function CustomMaterialTable({
                 tooltip: "Add to cart",
                 onClick: (event, rowData) => {
                   dispatch(addToCart(rowData));
+                  console.log(rowData);
                 },
               },
             ]

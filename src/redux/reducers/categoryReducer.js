@@ -32,6 +32,10 @@ const categoryReducer = (state = initialState.category, { type, payload }) => {
         draft.deleteCategory.loading = false;
         draft.deleteCategory.error = payload;
       });
+    case actions.SET_CATEGORIES:
+      return produce(state, (draft) => {
+        draft.items = payload;
+      });
     default:
       return state;
   }

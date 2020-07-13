@@ -101,3 +101,8 @@ export const deleteProduct = (id) => async (
     dispatch({ type: actions.DELETE_PRODUCT_FAIL, payload: err.message });
   }
 };
+
+export const setProducts = (items) => ({
+  type: actions.SET_PRODUCTS,
+  payload: items,
+});

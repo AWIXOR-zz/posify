@@ -32,6 +32,10 @@ const productsReducer = (state = initialState.product, { type, payload }) => {
         draft.deleteProduct.loading = false;
         draft.deleteProduct.error = payload;
       });
+    case actions.SET_PRODUCTS:
+      return produce(state, (draft) => {
+        draft.items = payload;
+      });
     default:
       return state;
   }

@@ -109,3 +109,9 @@ export const deleteCategory = (id) => async (
     dispatch({ type: actions.DELETE_CATEGORY_FAIL, payload: err.message });
   }
 };
+
+//Set categories
+export const setCategories = (items) => ({
+  type: actions.SET_CATEGORIES,
+  payload: items,
+});

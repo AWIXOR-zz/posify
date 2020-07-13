@@ -20,6 +20,7 @@ export default {
     },
   },
   product: {
+    items: [],
     error: null,
     loading: false,
     deleteProduct: {
@@ -29,6 +30,7 @@ export default {
   },
 
   category: {
+    items: [],
     error: null,
     loading: false,
     deleteCategory: {
