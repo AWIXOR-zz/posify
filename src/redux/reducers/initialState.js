@@ -41,6 +41,7 @@ export default {
 
   cart: {
     items: [],
+    itemsIncart: 0,
     totalToPay: 0,
   },
 };

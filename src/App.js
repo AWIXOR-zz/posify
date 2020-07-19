@@ -19,7 +19,25 @@ function App() {
   const { setProducts } = productActions;
   const { setCategories } = categoryActions;
   if (dataLoaded) {
-    dispatch(setProducts(invetory[userId].products));
+    var A1 = invetory[userId].products;
+    let customProducts = [];
+    for (let i = 0; i < A1.length; i++) {
+      const { name, id, price, soldBy, category, details } = A1[i];
+      // let A2 = [...A1[i]];
+      customProducts[i] = {
+        id,
+        name,
+        price,
+        Qte: 1,
+        soldBy,
+        category,
+        details,
+      };
+    }
+    console.log(customProducts);
+
+    // this.collectionPages.push(collectionPageDbModel);
+    dispatch(setProducts(customProducts));
     dispatch(setCategories(invetory[userId].categories));
   }
   useFirestoreConnect([

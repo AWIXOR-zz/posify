@@ -41,14 +41,14 @@ function Sales() {
   let data = [];
 
   products.forEach((element) => {
-    const { id, name, price } = element;
+    const { id, name, Qte, price } = element;
 
     let item = {
       id: id,
       name: name,
       price: price,
       invetory: price !== 0 ? "In stock" : "Out of stock",
-      Qte: parseInt(qte),
+      Qte: Qte,
       details: 19,
     };
     data.push(item);
@@ -71,14 +71,6 @@ function Sales() {
       title: "Qte",
       editable: "never",
       type: "numeric",
-      render: (rowData) => (
-        <TextField
-          type="number"
-          defaultValue={1}
-          inputProps={{ min: 1 }}
-          onChange={(event) => setQte(event.target.value)}
-        />
-      ),
     },
   ];
   const classes = useStyles();

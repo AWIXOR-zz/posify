@@ -18,6 +18,7 @@ const cartReducer = (state = initialState.cart, { type, payload, id }) => {
             Qte: payload.Qte,
           });
           draft.totalToPay = calculateTotal(draft);
+          // draft.itemsIncart += Qte;
         }
       });
     case actions.REMOVES_FROM_CART:
