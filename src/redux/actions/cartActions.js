@@ -8,3 +8,6 @@ export const removeFromCart = (id) => ({
   type: actions.REMOVES_FROM_CART,
   id: id,
 });
+export const clearCart = () => ({
+  type: actions.CLEAR_CART,
+});

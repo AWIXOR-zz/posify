@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as cartActions from "../../redux/actions/cartActions";
 
 import {
   CircularProgress,
@@ -21,7 +22,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 function CustomModal({ open, handleClose }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const totalToPay = useSelector((state) => state.cart.totalToPay);
+  const { clearCart } = cartActions;
 
   return (
     <div>
@@ -63,7 +66,15 @@ function CustomModal({ open, handleClose }) {
                 Cencel
               </Button>
 
-              <Button color="primary" variant="outlined" type="submit">
+              <Button
+                color="primary"
+                variant="outlined"
+                type="submit"
+                onClick={() => {
+                  dispatch(clearCart());
+                  handleClose();
+                }}
+              >
                 Confirm
               </Button>
             </Grid>

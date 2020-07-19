@@ -53,3 +53,4 @@ export const DELETE_FAIL = "DELETE_FAIL";
 //Add To Cart
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVES_FROM_CART = "DELETE_FROM_CART";
+export const CLEAR_CART = "CLEAR_CART";

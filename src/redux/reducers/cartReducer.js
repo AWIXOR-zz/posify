@@ -27,7 +27,11 @@ const cartReducer = (state = initialState.cart, { type, payload, id }) => {
         draft.items.splice(itemIndex, 1);
         draft.totalToPay = calculateTotal(draft);
       });
-
+    case actions.CLEAR_CART:
+      return produce(state, (draft) => {
+        draft.items = [];
+        draft.totalToPay = 0;
+      });
     default:
       return state;
   }
