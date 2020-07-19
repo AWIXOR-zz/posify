@@ -9,8 +9,8 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "../../components/Card/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import CardIcon from "../../components/Card/CardIcon";
-import TextField from "@material-ui/core/TextField";
 
+import CustomModal from "../../components/CustomModal/CustomModal";
 import CustomMaterialTable from "../../components/CustomMaterialTable/CustomMaterialTable";
 import CartItem from "../../components/CartItem/CartItem";
 const styles = {
@@ -33,13 +33,18 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 function Sales() {
-  const [qte, setQte] = React.useState(1);
+  const [open, setOpen] = React.useState(false);
 
   const totalToPay = useSelector((state) => state.cart.totalToPay);
   const products = useSelector((state) => state.product.items);
 
   let data = [];
-
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   products.forEach((element) => {
     const { id, name, Qte, price } = element;
 
@@ -100,6 +105,7 @@ function Sales() {
               style={{ backgroundColor: "#FFA623", color: "white" }}
               className={classes.button}
               endIcon={<Icon>send</Icon>}
+              onClick={handleOpen}
             >
               Charge
             </Button>
@@ -109,6 +115,7 @@ function Sales() {
       <GridItem xs={12} sm={12} md={8}>
         <CustomMaterialTable columns={columns} data={data} haveCart />
       </GridItem>
+      <CustomModal handleClose={handleClose} open={open} />
     </GridContainer>
   );
 }
