@@ -1,0 +1,43 @@
+import * as actions from "./actionTypes";
+import moment from "moment";
+
+// Add SALES
+export const addSales = (totalSales) => async (
+  dispatch,
+  getState,
+  { getFirestore }
+) => {
+  const firestore = getFirestore();
+  const userId = getState().firebase.auth.uid;
+  dispatch({ type: actions.ADD_SALES_START });
+  try {
+    const res = await firestore.collection("invetory").doc(userId).get();
+    const date = moment().format("dddd D MMM YYYY");
+
+    const newSales = {
+      id: new Date().valueOf(),
+      day: date,
+      totalSales,
+    };
+
+    if (!res.data().sales) {
+      firestore
+        .collection("invetory")
+        .doc(userId)
+        .update({
+          sales: [newSales],
+        });
+    } else {
+      firestore
+        .collection("invetory")
+        .doc(userId)
+        .update({
+          sales: [...res.data().sales, newSales],
+        });
+    }
+    dispatch({ type: actions.ADD_SALES_SUCCESS });
+    return true;
+  } catch (err) {
+    dispatch({ type: actions.ADD_SALES_FAIL, payload: err.message });
+  }
+};

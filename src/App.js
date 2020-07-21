@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useFirestoreConnect } from "react-redux-firebase";
-
 import "./App.css";
 import * as productActions from "./redux/actions/productsActions";
 import * as categoryActions from "./redux/actions/categoryActions";
@@ -34,7 +33,6 @@ function App() {
         details,
       };
     }
-    console.log(customProducts);
 
     // this.collectionPages.push(collectionPageDbModel);
     dispatch(setProducts(customProducts));

@@ -105,6 +105,7 @@ function Sales() {
               style={{ backgroundColor: "#FFA623", color: "white" }}
               className={classes.button}
               endIcon={<Icon>send</Icon>}
+              disabled={totalToPay === 0}
               onClick={handleOpen}
             >
               Charge

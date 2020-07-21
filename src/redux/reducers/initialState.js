@@ -38,7 +38,10 @@ export default {
       loading: false,
     },
   },
-
+  sales: {
+    error: null,
+    loading: false,
+  },
   cart: {
     items: [],
     itemsIncart: 0,
