@@ -61,3 +61,8 @@ export const addSales = (totalSales) => async (
     dispatch({ type: actions.ADD_SALES_FAIL, payload: err.message });
   }
 };
+
+export const setSales = (items) => ({
+  type: actions.SET_SALES,
+  payload: items,
+});

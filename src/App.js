@@ -5,6 +5,7 @@ import { useFirestoreConnect } from "react-redux-firebase";
 import "./App.css";
 import * as productActions from "./redux/actions/productsActions";
 import * as categoryActions from "./redux/actions/categoryActions";
+import * as salesActions from "./redux/actions/salesActions";
 
 import routes from "./routes";
 function App() {
@@ -17,6 +18,7 @@ function App() {
   const dataLoaded = Object.values(requested).some((a) => a === true);
   const { setProducts } = productActions;
   const { setCategories } = categoryActions;
+  const { setSales } = salesActions;
   if (dataLoaded) {
     var A1 = invetory[userId].products;
     let customProducts = [];
@@ -37,6 +39,7 @@ function App() {
     // this.collectionPages.push(collectionPageDbModel);
     dispatch(setProducts(customProducts));
     dispatch(setCategories(invetory[userId].categories));
+    dispatch(setSales(invetory[userId].sales));
   }
   useFirestoreConnect([
     {

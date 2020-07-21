@@ -39,6 +39,7 @@ export default {
     },
   },
   sales: {
+    items: [],
     error: null,
     loading: false,
   },

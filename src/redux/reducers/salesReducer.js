@@ -18,6 +18,10 @@ const salesReducer = (state = initialState.sales, { type, payload }) => {
         draft.loading = false;
         draft.error = payload;
       });
+    case actions.SET_SALES:
+      return produce(state, (draft) => {
+        draft.items = payload;
+      });
     default:
       return state;
   }

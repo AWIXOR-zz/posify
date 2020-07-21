@@ -55,7 +55,9 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVES_FROM_CART = "DELETE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
 
-//Sales 
+//Sales
 export const ADD_SALES_START = "ADD_TO_SALES";
 export const ADD_SALES_SUCCESS = "ADD_TO_SALES";
 export const ADD_SALES_FAIL = "ADD_TO_SALES";
+
+export const SET_SALES = "SET_SALES";
