@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
 import * as cartActions from "../../redux/actions/cartActions";
-
+import * as salesActions from "../../redux/actions/salesActions";
 import {
   CircularProgress,
   Typography,
@@ -24,7 +24,9 @@ function CustomModal({ open, handleClose }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const totalToPay = useSelector((state) => state.cart.totalToPay);
+  const itemsInCart = useSelector((state) => state.cart.itemsInCart);
   const { clearCart } = cartActions;
+  const { addSales } = salesActions;
 
   return (
     <div>
@@ -72,6 +74,7 @@ function CustomModal({ open, handleClose }) {
                 type="submit"
                 onClick={() => {
                   dispatch(clearCart());
+                  dispatch(addSales(itemsInCart));
                   handleClose();
                 }}
               >
