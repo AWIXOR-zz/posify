@@ -9,11 +9,14 @@ import Clear from "@material-ui/icons/Clear";
 import * as cartActions from "../../redux/actions/cartActions";
 import * as productActions from "../../redux/actions/productsActions";
 import * as categoryActions from "../../redux/actions/categoryActions";
+import AddProduct from "../AddProduct/AddProduct";
+import { render } from "@testing-library/react";
 
 export default function CustomMaterialTable({
   data,
   columns,
   haveCart,
+  isSales,
   isCategory,
 }) {
   const { addProduct, editProduct, deleteProduct } = productActions;
@@ -52,13 +55,18 @@ export default function CustomMaterialTable({
       }}
       editable={{
         isEditHidden: (rowData) => rowData.Invetory === "x",
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              dispatch(isCategory ? addCategory(newData) : addProduct(newData));
-            }, 600);
-          }),
+        onRowAdd: !isSales
+          ? (newData) =>
+              new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve();
+                  render(AddProduct);
+                  dispatch(
+                    isCategory ? addCategory(newData) : addProduct(newData)
+                  );
+                }, 600);
+              })
+          : null,
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve) => {
             setTimeout(() => {
