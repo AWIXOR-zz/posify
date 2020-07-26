@@ -16,15 +16,15 @@ var delays2 = 80,
 
 const dailySalesChart = {
   data: {
-    labels: ["M", "T", "W", "T", "F", "S", "S"],
-    series: [[12, 17, 7, 17, 23, 18, 38]],
+    labels: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+    series: [0, 0, 0, 0, 0, 0, 0],
   },
   options: {
     lineSmooth: Chartist.Interpolation.cardinal({
       tension: 0,
     }),
     low: 0,
-    high: 50,
+    high: 200,
     chartPadding: {
       top: 0,
       right: 0,
@@ -84,7 +84,7 @@ const monthlySalesChart = {
       "Nov",
       "Dec",
     ],
-    series: [[542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]],
+    series: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   options: {
     axisX: {
