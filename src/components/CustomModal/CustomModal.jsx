@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as cartActions from "../../redux/actions/cartActions";
 import * as salesActions from "../../redux/actions/salesActions";
 import {
-  CircularProgress,
+  // CircularProgress,
   Typography,
   Divider,
   Button,
