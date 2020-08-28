@@ -1,4 +1,5 @@
 import * as actions from "./actionTypes";
+import * as databaseActions from "./databaseActions";
 
 // Sign up action creator
 export const signUp = (data) => async (
@@ -8,6 +9,7 @@ export const signUp = (data) => async (
 ) => {
   const firebase = getFirebase();
   const firestore = getFirestore();
+  const { initializeDatabase } = databaseActions;
   dispatch({ type: actions.AUTH_START });
   try {
     const res = await firebase
@@ -19,6 +21,8 @@ export const signUp = (data) => async (
       fullName: data.fullName,
       businessName: data.businessName,
     });
+    dispatch(initializeDatabase());
+
     dispatch({ type: actions.AUTH_SUCCESS });
   } catch (err) {
     dispatch({ type: actions.AUTH_FAIL, payload: err.message });

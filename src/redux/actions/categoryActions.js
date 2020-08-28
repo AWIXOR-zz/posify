@@ -24,7 +24,6 @@ export const addCategory = (data) => async (
           ? numberOfitems++
           : numberOfitems
       );
-    console.log(numberOfitems);
 
     const newCategory = {
       id: new Date().valueOf(),

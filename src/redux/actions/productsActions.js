@@ -21,9 +21,9 @@ export const addProduct = (data) => async (
       category: category,
       details: details,
     };
-    console.log(newProduct);
+    console.log(res.data());
 
-    if (!res.data().products) {
+    if (!res.data()) {
       firestore
         .collection("invetory")
         .doc(userId)

@@ -27,13 +27,24 @@ export default {
       error: null,
       loading: false,
     },
+    initialiseProducts: {
+      error: null,
+      loading: false,
+    },
   },
-
+  database: {
+    error: null,
+    loading: false,
+  },
   category: {
     items: [],
     error: null,
     loading: false,
     deleteCategory: {
+      error: null,
+      loading: false,
+    },
+    initialiseCategories: {
       error: null,
       loading: false,
     },

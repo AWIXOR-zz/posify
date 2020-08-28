@@ -12,3 +12,4 @@ export {
 export { addProduct, editProduct, deleteProduct } from "./productsActions";
 export { addCategory, editCategory, deleteCategory } from "./categoryActions";
 export { addSales } from "./salesActions";
+export { initializeDatabase } from "./databaseActions";

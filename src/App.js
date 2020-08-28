@@ -6,7 +6,6 @@ import "./App.css";
 import * as productActions from "./redux/actions/productsActions";
 import * as categoryActions from "./redux/actions/categoryActions";
 import * as salesActions from "./redux/actions/salesActions";
-
 import routes from "./routes";
 function App() {
   const dispatch = useDispatch();
@@ -19,27 +18,34 @@ function App() {
   const { setProducts } = productActions;
   const { setCategories } = categoryActions;
   const { setSales } = salesActions;
-  if (dataLoaded) {
-    var A1 = invetory[userId].products;
+  if (loggedIn && dataLoaded && emailVerified) {
     let customProducts = [];
-    for (let i = 0; i < A1.length; i++) {
-      const { name, id, price, soldBy, category, details } = A1[i];
-      // let A2 = [...A1[i]];
-      customProducts[i] = {
-        id,
-        name,
-        price,
-        Qte: 1,
-        soldBy,
-        category,
-        details,
-      };
+    let sales = [];
+    let categories = [];
+    if (invetory[userId]) {
+      var A1 = invetory[userId].products;
+      categories = invetory[userId].categories;
+      sales = invetory[userId].sales;
+      for (let i = 0; i < A1.length; i++) {
+        const { name, id, price, soldBy, category, details } = A1[i];
+        // let A2 = [...A1[i]];
+        customProducts[i] = {
+          id,
+          name,
+          price,
+          Qte: 1,
+          soldBy,
+          category,
+          details,
+        };
+      }
     }
 
     // this.collectionPages.push(collectionPageDbModel);
+
     dispatch(setProducts(customProducts));
-    dispatch(setCategories(invetory[userId].categories));
-    dispatch(setSales(invetory[userId].sales));
+    dispatch(setCategories(categories));
+    dispatch(setSales(sales));
   }
   useFirestoreConnect([
     {

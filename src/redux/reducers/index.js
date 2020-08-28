@@ -7,8 +7,10 @@ import productsReducer from "./productsReducer";
 import categoryReducer from "./categoryReducer";
 import salesReducer from "./salesReducer.js";
 import cartReducer from "./cartReducer";
+import databaseReducer from "./databaseReducer";
 const rootReducer = combineReducers({
   auth: authReducer,
+  database: databaseReducer,
   product: productsReducer,
   category: categoryReducer,
   sales: salesReducer,
