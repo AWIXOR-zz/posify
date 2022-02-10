@@ -19,7 +19,7 @@
     "immer": "^6.0.9",
     "material-table": "^1.62.0",
     "moment": "^2.27.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "react": "^16.13.1",
     "react-chartist": "^0.14.3",
     "react-dom": "^16.13.1",
